@@ -11,7 +11,7 @@ contract Poll is PollVariables {
     uint256 endTime;
     bool isBasicPoll;
     /*  ( Category[] categories )
-        ( eligibleVoters[] address => bool)
+        ( mapping(address => bool) eligibleVoters )
         ( VoteStatus[] voteStatus )
         ... are inherited from PollVaribles */
 
@@ -45,7 +45,7 @@ contract Poll is PollVariables {
                 categories[i].candidates[j].name = _categories[i]
                     .candidates[j]
                     .name;
-                categories[i].candidates[j].votes = 0; //_categories[i].candidates[j].votes;
+                categories[i].candidates[j].votes = 0;
             }
         }
 
@@ -60,10 +60,10 @@ contract Poll is PollVariables {
         }
     }
 
-    function vote(uint256 _categoryID, uint256 _candidateID) public {
+    function vote(uint256 _categoryID, uint256 _candidateID) external {
         require(
-            eligibleVoters[msg.sender] == true,
-            "You're eligible to participate in this poll!"
+            isEligible(msg.sender),
+            "You're not eligible to participate in this poll!"
         );
         require(
             voteStatus[_categoryID].hasVoted[msg.sender] == false,
@@ -72,13 +72,13 @@ contract Poll is PollVariables {
         // require(block.timestamp >= startTime, "Poll has not started!");
         // require(block.timestamp <= startTime, "Poll has ended!");
 
-        voteStatus[_categoryID].hasVoted[msg.sender] == true;
+        voteStatus[_categoryID].hasVoted[msg.sender] = true;
         categories[_categoryID].candidates[_candidateID].votes += 1;
         emit voteCasted(_categoryID, _candidateID);
     }
 
-    function getPollStatus()
-        public
+    function getPollDetails()
+        external
         view
         returns (
             string memory,
@@ -94,12 +94,16 @@ contract Poll is PollVariables {
             pollTitle,
             startTime,
             endTime,
-            categories,
+            getPollStatus(),
             isBasicPoll
         );
     }
 
-    function getCategories() public view returns (Category[] memory) {
-        return categories;
+    function getPollStatus() public view returns (Category[] memory) {
+        return (categories);
+    }
+
+    function isEligible(address _prospectiveVoter) public view returns (bool) {
+        return eligibleVoters[_prospectiveVoter];
     }
 }

@@ -6,8 +6,12 @@ import "./Poll.sol";
 import "./PollVariables.sol";
 
 contract OneVoteFactory is PollVariables {
-    mapping(string => address) polls;
-    event pollCreated(string pollTitle, string pollCode, address pollAddress);
+    mapping(string => Poll) polls;
+    event pollCreated(
+        string indexed pollTitle,
+        string indexed pollCode,
+        address indexed pollAddress
+    );
 
     constructor() payable {}
 
@@ -21,21 +25,20 @@ contract OneVoteFactory is PollVariables {
         bool _isBasicPoll
     ) public payable {
         require(
-            polls[_pollCode] == 0x0000000000000000000000000000000000000000,
+            polls[_pollCode] ==
+                Poll(0x0000000000000000000000000000000000000000),
             "Pollcode already in use!"
         );
-        polls[_pollCode] = address(
-            new Poll(
-                _pollCode,
-                _pollTitle,
-                _startTime,
-                _endTime,
-                _categories,
-                _voters,
-                _isBasicPoll
-            )
+        polls[_pollCode] = new Poll(
+            _pollCode,
+            _pollTitle,
+            _startTime,
+            _endTime,
+            _categories,
+            _voters,
+            _isBasicPoll
         );
-        emit pollCreated(_pollTitle, _pollCode, polls[_pollCode]);
+        emit pollCreated(_pollTitle, _pollCode, address(polls[_pollCode]));
     }
 
     function getPollAddress(string memory _pollCode)
@@ -43,6 +46,15 @@ contract OneVoteFactory is PollVariables {
         view
         returns (address)
     {
-        return polls[_pollCode];
+        require(
+            polls[_pollCode] !=
+                Poll(0x0000000000000000000000000000000000000000),
+            "Poll doesn't exist! Check your spelling and try again."
+        );
+        require(
+            polls[_pollCode].isEligible(msg.sender),
+            "You're not eligible to participate in this poll!"
+        );
+        return address(polls[_pollCode]);
     }
 }
