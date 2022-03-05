@@ -2,7 +2,17 @@ module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {}
+    // extend: {}
+    backgroundColor: theme => ({
+      mblue: "#052272",
+      bkblue: "#F5F7F9",
+      bdblue: "#B8C3E0",
+      ablue: "#DBE0ED"
+    }),
+    fontFamily: {
+      sans: ["Geometria"],
+      mono: ['"Source Code Pro"']
+    }
   },
   variants: {
     extend: {}
