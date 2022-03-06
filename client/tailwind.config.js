@@ -7,11 +7,16 @@ module.exports = {
       mblue: "#052272",
       bkblue: "#F5F7F9",
       bdblue: "#B8C3E0",
-      ablue: "#DBE0ED"
+      ablue: "#DBE0ED",
+      lemon: "#C1FF3D"
     }),
     fontFamily: {
       sans: ["Geometria"],
       mono: ['"Source Code Pro"']
+    },
+    textColor: {
+      mblue: "#052272",
+      white: "#FFFFFF"
     }
   },
   variants: {
