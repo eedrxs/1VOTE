@@ -1,0 +1,229 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  background-color: #f5f7f9;
+}
+
+h4 {
+  font: bold 1rem "Source Code Pro";
+  margin-bottom: 25px;
+  color: #052272;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 330px;
+  margin: auto;
+  margin-top: 30px;
+  background-color: #dbe0ed;
+  border: 3px solid #b8c3e0;
+  border-radius: 15px;
+  font-family: "Source Code Pro";
+  color: #052272;
+}
+
+form * {
+  display: block;
+}
+
+.section {
+  width: 90%;
+  margin: auto;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+hr {
+  border: none;
+  border-bottom: 2px solid #b8c3e0;
+}
+
+label {
+  font: 500 0.8rem "Source Code Pro";
+  color: #052272;
+  margin-bottom: 6px;
+}
+
+#poll-details input[type="text"] {
+  width: 100%;
+  border-radius: 6px;
+  height: 44px;
+  background-color: #f5f7f9;
+  border: 2px solid #b8c3e0;
+  margin-bottom: 20px;
+  padding-left: 8px;
+}
+
+#duration input[type="date"] {
+  width: 100%;
+  border-radius: 6px;
+  background-color: #f5f7f9;
+  border: 2px solid #b8c3e0;
+  height: 44px;
+  padding-left: 6px;
+  margin-bottom: 20px;
+}
+
+#duration label[for="end-time"] {
+  text-align: right;
+}
+
+#duration > div {
+  display: grid;
+  grid-template-columns: 47% 47%;
+  grid-column-gap: 6%;
+}
+
+#type-and-candidates > div:first-of-type {
+  display: flex;
+  align-items: baseline;
+}
+
+#type-and-candidates input[type="radio"] {
+  position: relative;
+  top: 3px;
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
+}
+
+#type-and-candidates label:first-of-type {
+  margin-right: 20px;
+}
+
+.category {
+  border: 2px solid #b8c3e0;
+  background-color: #f5f7f9;
+  border-radius: 6px;
+  margin-top: 6px;
+  display: block;
+}
+
+.category h4 {
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.category > div.candidate,
+input[type="text"] {
+  width: 90%;
+  height: 40px;
+  border: 2px solid #b8c3e0;
+  border-radius: 6px;
+  background-color: #f5f7f9;
+  margin: auto;
+  padding: 10px 0 10px 10px;
+  margin-bottom: 10px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  position: relative;
+}
+
+.category .candidate-button {
+  color: white;
+  border: none;
+  position: absolute;
+  right: calc(0px - 2px);
+  top: calc(0px - 2px);
+  width: 15%;
+  height: calc(100% + 4px);
+  background-color: #052272;
+  border-radius: 0 6px 6px 0;
+  cursor: pointer;
+}
+
+#add-candidate-wrapper > input {
+  width: 100%;
+  border: 2px dashed #b8c3e0;
+}
+
+#add-candidate-wrapper {
+  width: 90%;
+  margin: auto;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.category .add-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  cursor: pointer;
+}
+
+#type-and-candidates #add-category-wrapper {
+  position: relative;
+  margin-top: 10px;
+}
+
+#type-and-candidates #add-category-wrapper > input {
+  width: 100%;
+  border: 2px dashed #b8c3e0;
+}
+
+#type-and-candidates #add-category-wrapper > button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 15%;
+  background-color: #052272;
+  border: none;
+  border-radius: 0 6px 6px 0;
+  cursor: pointer;
+}
+
+#eligible-voters > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-radius: 6px;
+  border: 2px dashed #052272;
+  height: 120px;
+  margin: auto;
+  background-color: #f5f7f9;
+  margin-bottom: 10px;
+}
+
+#eligible-voters input[type="file"] {
+  display: none;
+}
+
+#eligible-voters label {
+  font: 500 1rem Geometria;
+  margin-bottom: 0;
+  padding: 10px 30px;
+  border: 2px solid #052272;
+  border-radius: 6px;
+  background-color: #dbe0ed;
+  cursor: pointer;
+}
+
+#eligible-voters p {
+  font: 500 0.55rem Geometria;
+  margin-bottom: 30px;
+}
+
+form + button {
+  width: 330px;
+  margin: auto;
+  display: block;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 15px;
+  border: none;
+  background-color: #052272;
+  color: white;
+  font: 500 1rem Geometria;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}

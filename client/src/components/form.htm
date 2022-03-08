@@ -1,0 +1,60 @@
+<form action="">
+  <div class="section" id="poll-details">
+    <h4>Poll details</h4>
+    <label for="poll-title">Title of poll</label>
+    <input type="text" name="" id="poll-title" />
+    <label for="poll-code">Poll code</label>
+    <input type="text" name="" id="poll-code" />
+  </div>
+  <hr />
+  <div class="section" id="duration">
+    <h4>Duration</h4>
+    <div>
+      <div>
+        <label for="start-time">Start</label>
+        <input type="date" name="" id="start-time" />
+      </div>
+      <div>
+        <label for="end-time">End</label>
+        <input type="date" name="" id="end-time" />
+      </div>
+    </div>
+  </div>
+  <hr />
+  <div class="section" id="type-and-candidates">
+    <h4>Poll type and Candidates</h4>
+    <div>
+      <input type="radio" name="" id="basic" />
+      <label for="basic">Basic</label>
+      <input type="radio" name="" id="categorised" />
+      <label for="categorised">Categorised</label>
+    </div>
+    <div class="category">
+      <h4>President</h4>
+      <div class="candidate">
+        Samuel Ajayi Onafuye<button class="candidate-button delete"></button>
+      </div>
+      <div id="add-candidate-wrapper">
+        <input type="text" id="add-candidate" placeholder="Add candidate" />
+        <button class="candidate-button add-button"></button>
+      </div>
+    </div>
+    <div id="add-category-wrapper">
+      <input type="text" id="add-category" placeholder="Add category" />
+      <button class="candidate-button add-button"></button>
+    </div>
+  </div>
+  <hr />
+  <div class="section" id="eligible-voters">
+    <h4>Eligible voters</h4>
+    <div>
+      <label for="upload">Upload</label>
+      <input type="file" name="" id="upload" />
+    </div>
+    <p>
+      Upload JSON document containing a single array containing the account
+      addresses of eligible participants
+    </p>
+  </div>
+</form>
+<button>Finish</button>
