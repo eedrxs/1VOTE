@@ -15,16 +15,34 @@ module.exports = {
       }),
       textColor: {
         mblue: "#052272",
+        bkblue: "#F5F7F9",
         white: "#FFFFFF"
       },
       borderWidth: {
         3: "3px"
       },
       fontSize: {
-        sml: ".8rem"
+        sml: "0.8rem",
+        sm: "0.95rem"
       },
       margin: {
-        3: "6px"
+        3: "6px",
+        4: "10px"
+      },
+      padding: {
+        2.5: "10px"
+      },
+      height: {
+        2.5: "10px"
+      },
+      width: {
+        2.5: "10px",
+        "14/0": "14%",
+        "15/0": "15%",
+        "90/0": "90%"
+      },
+      inset: {
+        0.5: "3px"
       }
     },
     fontFamily: {

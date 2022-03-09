@@ -1,21 +1,16 @@
 import React, { Component } from "react";
 import PollDetails from "./form/pollDetails";
 import Duration from "./form/duration";
+import TypeAndCandidates from "./form/typeAndCandidates";
 class PollSetup extends Component {
   state = {
     pollTitle: null,
     pollCode: null,
     startTime: null,
     endTime: null,
-    categories: [
-      {
-        id: null,
-        name: null,
-        candidates: [{ id: null, name: null, votes: null }]
-      }
-    ],
-    voters: [],
-    pollType: null
+    isBasic: null,
+    categories: [],
+    voters: []
   };
 
   handleTitle = pollTitle => {
@@ -38,10 +33,20 @@ class PollSetup extends Component {
     console.log(endTime);
   };
 
+  handleType = isBasic => {
+    this.setState({ isBasic });
+    console.log(isBasic);
+  };
+
+  handleCategories = categories => {
+    this.setState({ categories });
+    console.log(categories);
+  };
+
   render() {
-    const page = "bg-bkblue w-screen h-screen box-border pt-10 font-mono";
+    const page = "bg-bkblue w-full h-screen box-border pt-10 font-mono";
     const form =
-      "flex flex-col mx-auto w-80 lg:w-96 bg-ablue text-mblue rounded-xl border-3 border-bdblue";
+      "flex flex-col mx-auto mb-1 w-80 lg:w-96 bg-ablue text-mblue rounded-xl border-3 border-bdblue";
 
     return (
       <main className={page}>
@@ -53,6 +58,10 @@ class PollSetup extends Component {
           <Duration
             onStartTime={this.handleStartTime}
             onEndTime={this.handleEndTime}
+          />
+          <TypeAndCandidates
+            onType={this.handleType}
+            onCategories={this.handleCategories}
           />
         </form>
       </main>

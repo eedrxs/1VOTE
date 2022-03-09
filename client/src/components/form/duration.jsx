@@ -3,11 +3,12 @@ import React from "react";
 const Duration = props => {
   let sectionTitle = "text-base font-bold mb-6";
   let inputTitle = "block text-sml font-medium mb-3";
-  let dateInput = "w-full h-11 border-2 border-bdblue rounded-md p-2 mb-5";
+  let dateInput =
+    "w-full h-11 border-2 border-bdblue rounded-md bg-bkblue p-2 mb-4";
 
   return (
     <React.Fragment>
-      <div className="w-11/12 pt-4 pb-4 mx-auto">
+      <div className="w-90/0 pt-4 pb-7 mx-auto">
         <h4 className={sectionTitle}>Duration</h4>
         <div className="grid grid-cols-2 gap-x-4">
           <div>
@@ -34,7 +35,7 @@ const Duration = props => {
           </div>
         </div>
       </div>
-      <hr className="border-b-2 border-t border-bdblue" />
+      <hr className="border-b-2 border-t-0 border-bdblue" />
     </React.Fragment>
   );
 };
