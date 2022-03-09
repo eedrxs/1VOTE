@@ -9,11 +9,10 @@ class PollSetup extends Component {
     startTime: null,
     endTime: null,
     isBasic: true,
-    categoriesAndCandidates: [
+    categories: [
       {
-        id: 0,
         name: "Basic",
-        candidates: [{ id: 0, name: "Samuel Ajayi Onafuye" }]
+        candidates: ["Samuel Ajayi Onafuye", "Walter Nnaji"]
       }
     ],
     voters: []
@@ -44,9 +43,17 @@ class PollSetup extends Component {
     console.log(isBasic);
   };
 
-  handleRemoveCandidate = (categoryID, candidateID) => {
-    // this.setState({ candidate });
-    console.log(categoryID, candidateID);
+  handleAddCandidate = (categoryId, candidate) => {
+    let categories = [...this.state.categories];
+    categories[categoryId].candidates.push(candidate);
+    this.setState({ categories });
+    console.log(candidate);
+  };
+
+  handleRemoveCandidate = (categoryId, candidateId) => {
+    let categories = [...this.state.categories];
+    categories[categoryId].candidates.splice(candidateId, 1);
+    this.setState({ categories });
   };
 
   render() {
@@ -67,8 +74,9 @@ class PollSetup extends Component {
           />
           <TypeAndCandidates
             isBasic={this.state.isBasic}
-            categoriesAndCandidates={this.state.categoriesAndCandidates}
+            categories={this.state.categories}
             onPollType={this.handlePollType}
+            onAddCandidate={this.handleAddCandidate}
             onRemoveCandidate={this.handleRemoveCandidate}
           />
         </form>

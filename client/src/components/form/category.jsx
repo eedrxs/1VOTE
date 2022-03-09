@@ -3,7 +3,13 @@ import AddCandidate from "./addCandidate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
-const Category = ({ isBasic, category, onRemoveCandidate }) => {
+const Category = ({
+  isBasic,
+  categoryId,
+  category,
+  onAddCandidate,
+  onRemoveCandidate
+}) => {
   return (
     <div
       className={
@@ -21,26 +27,23 @@ const Category = ({ isBasic, category, onRemoveCandidate }) => {
           />
         </div>
       )}
-      {/* <div className="font-medium text-sm border-2 border-bdblue rounded-md w-full h-10 p-2.5 pt-2">
-          Samuel Ajayi Onafuye
-        </div> */}
-      {category.candidates.map(candidate => (
-        <div key={candidate.id} className="relative w-90/0 m-auto mb-4">
+      {category.candidates.map((candidate, index) => (
+        <div key={index} className="relative w-90/0 m-auto mb-4">
           <input
             type="text"
-            value={candidate.name}
+            value={candidate}
             readOnly
             className="font-medium text-sm border-2 border-bdblue focus:outline-none rounded-md w-full h-10 p-2.5"
           />
           <button
-            onClick={() => onRemoveCandidate(category.id, candidate.id)}
+            onClick={() => onRemoveCandidate(categoryId, index)}
             className="absolute bg-mblue border-0 w-15/0 h-full top-0 right-0 rounded-tr-md rounded-br-md cursor-pointer"
           >
             <FontAwesomeIcon icon={faXmark} className="text-bkblue" />
           </button>
         </div>
       ))}
-      <AddCandidate />
+      <AddCandidate categoryId={categoryId} onAddCandidate={onAddCandidate} />
     </div>
   );
 };
