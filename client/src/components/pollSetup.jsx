@@ -4,12 +4,18 @@ import Duration from "./form/duration";
 import TypeAndCandidates from "./form/typeAndCandidates";
 class PollSetup extends Component {
   state = {
-    pollTitle: null,
-    pollCode: null,
+    pollTitle: "",
+    pollCode: "",
     startTime: null,
     endTime: null,
-    isBasic: null,
-    categories: [],
+    isBasic: true,
+    categoriesAndCandidates: [
+      {
+        id: 0,
+        name: "Basic",
+        candidates: [{ id: 0, name: "Samuel Ajayi Onafuye" }]
+      }
+    ],
     voters: []
   };
 
@@ -33,18 +39,18 @@ class PollSetup extends Component {
     console.log(endTime);
   };
 
-  handleType = isBasic => {
+  handlePollType = isBasic => {
     this.setState({ isBasic });
     console.log(isBasic);
   };
 
-  handleCategories = categories => {
-    this.setState({ categories });
-    console.log(categories);
+  handleRemoveCandidate = (categoryID, candidateID) => {
+    // this.setState({ candidate });
+    console.log(categoryID, candidateID);
   };
 
   render() {
-    const page = "bg-bkblue w-full h-screen box-border pt-10 font-mono";
+    const page = "bg-bkblue w-full h-full box-border pt-10 pb-10 font-mono";
     const form =
       "flex flex-col mx-auto mb-1 w-80 lg:w-96 bg-ablue text-mblue rounded-xl border-3 border-bdblue";
 
@@ -60,8 +66,10 @@ class PollSetup extends Component {
             onEndTime={this.handleEndTime}
           />
           <TypeAndCandidates
-            onType={this.handleType}
-            onCategories={this.handleCategories}
+            isBasic={this.state.isBasic}
+            categoriesAndCandidates={this.state.categoriesAndCandidates}
+            onPollType={this.handlePollType}
+            onRemoveCandidate={this.handleRemoveCandidate}
           />
         </form>
       </main>

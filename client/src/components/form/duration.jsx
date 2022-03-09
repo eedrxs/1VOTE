@@ -19,6 +19,7 @@ const Duration = props => {
               type="date"
               id="start-time"
               className={dateInput}
+              required
               onBlur={event => props.onStartTime(event.target.value)}
             />
           </div>
@@ -30,6 +31,7 @@ const Duration = props => {
               type="date"
               id="end-time"
               className={dateInput}
+              required
               onBlur={event => props.onEndTime(event.target.value)}
             />
           </div>

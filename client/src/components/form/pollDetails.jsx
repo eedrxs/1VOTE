@@ -17,6 +17,8 @@ const PollDetails = props => {
           type="text"
           id="poll-title"
           className={textInput}
+          required
+          autoFocus
           onBlur={event => props.onTitle(event.target.value)}
         />
         <label htmlFor="poll-code" className={inputTitle}>
@@ -26,6 +28,7 @@ const PollDetails = props => {
           type="text"
           id="poll-code"
           className={textInput}
+          required
           onBlur={event => props.onPollCode(event.target.value)}
         />
       </div>
