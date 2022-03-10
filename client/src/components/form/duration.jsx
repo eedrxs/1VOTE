@@ -1,11 +1,11 @@
 import React from "react";
 
-const Duration = props => {
-  let sectionTitle = "text-base font-bold mb-6";
-  let inputTitle = "block text-sml font-medium mb-3";
-  let dateInput =
-    "w-full h-11 border-2 border-bdblue rounded-md bg-bkblue p-2 mb-4";
+let sectionTitle = "text-base font-bold mb-6";
+let inputTitle = "block text-sml font-medium mb-3";
+let dateInput =
+  "w-full h-11 border-2 border-bdblue rounded-md bg-bkblue focus:outline-none focus:ring p-2 mb-4";
 
+const Duration = props => {
   return (
     <React.Fragment>
       <div className="w-90/0 pt-4 pb-7 mx-auto">

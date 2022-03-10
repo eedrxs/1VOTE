@@ -14,15 +14,18 @@ const AddCandidate = ({ categoryId, onAddCandidate }) => {
         type="text"
         id="add-candidate"
         placeholder="Add candidate"
-        className="border-2 border-dashed border-bdblue rounded-md w-full h-10 p-2.5"
+        className="border-2 border-dashed border-bdblue rounded-md focus:outline-none focus:border-mblue focus:border-opacity-70 w-full h-10 p-2.5"
         onBlur={event => {
           setCandidate(event.target.value);
           event.target.value = "";
         }}
       />
       <button
-        className="absolute bg-mblue border-0 w-15/0 h-full top-0 right-0 rounded-tr-md rounded-br-md cursor-pointer"
-        onClick={() => onAddCandidate(categoryId, candidate)}
+        className="absolute bg-mblue border-0 w-15/0 h-full top-0 right-0 rounded-tr-md rounded-br-md hover:bg-dmblue cursor-pointer"
+        onClick={event => {
+          event.preventDefault();
+          onAddCandidate(categoryId, candidate);
+        }}
       >
         <FontAwesomeIcon icon={faPlus} className="text-bkblue" />
       </button>

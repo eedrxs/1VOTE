@@ -24,7 +24,7 @@ const Category = ({
           <FontAwesomeIcon
             icon={faXmark}
             size="2x"
-            className="inline-block absolute text-bkblue bg-mblue rounded-full right-0 h-2.5 w-2.5 p-1"
+            className="inline-block absolute text-bkblue bg-mblue hover:bg-dmblue rounded-full right-0 h-2.5 w-2.5 p-1"
             onClick={() => onRemoveCategory(categoryId)}
           />
         </div>
@@ -39,7 +39,7 @@ const Category = ({
           />
           <button
             onClick={() => onRemoveCandidate(categoryId, index)}
-            className="absolute bg-mblue border-0 w-15/0 h-full top-0 right-0 rounded-tr-md rounded-br-md cursor-pointer"
+            className="absolute bg-mblue border-0 w-15/0 h-full top-0 right-0 rounded-tr-md rounded-br-md hover:bg-dmblue cursor-pointer"
           >
             <FontAwesomeIcon icon={faXmark} className="text-bkblue" />
           </button>

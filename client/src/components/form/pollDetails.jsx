@@ -1,11 +1,11 @@
 import React from "react";
 
-const PollDetails = props => {
-  let sectionTitle = "text-base font-bold mb-6";
-  let inputTitle = "block text-sml font-medium mb-3";
-  let textInput =
-    "block w-full border-2 border-bdblue bg-bkblue rounded-md mb-4 p-2";
+let sectionTitle = "text-base font-bold mb-6";
+let inputTitle = "block text-sml font-medium mb-3";
+let textInput =
+  "block w-full border-2 border-bdblue bg-bkblue rounded-md focus:outline-none focus:ring mb-4 p-2";
 
+const PollDetails = ({ onTitle, onPollCode }) => {
   return (
     <React.Fragment>
       <div className="w-90/0 pt-4 pb-7 mx-auto">
@@ -19,7 +19,7 @@ const PollDetails = props => {
           className={textInput}
           required
           autoFocus
-          onBlur={event => props.onTitle(event.target.value)}
+          onBlur={event => onTitle(event.target.value)}
         />
         <label htmlFor="poll-code" className={inputTitle}>
           Poll code
@@ -29,7 +29,7 @@ const PollDetails = props => {
           id="poll-code"
           className={textInput}
           required
-          onBlur={event => props.onPollCode(event.target.value)}
+          onBlur={event => onPollCode(event.target.value)}
         />
       </div>
       <hr className="border-b-2 border-t-0 border-bdblue" />

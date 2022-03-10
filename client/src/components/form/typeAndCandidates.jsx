@@ -1,7 +1,6 @@
 import React from "react";
 import PollType from "./pollType";
 import Category from "./category";
-
 import AddCategory from "./addCategory";
 
 const TypeAndCandidates = ({

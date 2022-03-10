@@ -8,10 +8,14 @@ module.exports = {
         bkblue: "#F5F7F9",
         bdblue: "#B8C3E0",
         ablue: "#DBE0ED",
-        lemon: "#C1FF3D"
+        lemon: "#C1FF3D",
+        dmblue: "#051d61",
+        dablue: "#c9d0e0"
       }),
       borderColor: theme => ({
-        bdblue: "#B8C3E0"
+        bdblue: "#B8C3E0",
+        mblue: "#052272",
+        ablue: "#DBE0ED"
       }),
       textColor: {
         mblue: "#052272",
@@ -21,7 +25,11 @@ module.exports = {
       borderWidth: {
         3: "3px"
       },
+      ringWidth: {
+        DEFAULT: "1.8px"
+      },
       fontSize: {
+        xxs: "0.55rem",
         sml: "0.8rem",
         sm: "0.95rem"
       },
@@ -30,10 +38,12 @@ module.exports = {
         4: "10px"
       },
       padding: {
-        2.5: "10px"
+        2.5: "10px",
+        7.5: "30px"
       },
       height: {
-        2.5: "10px"
+        2.5: "10px",
+        30: "120px"
       },
       width: {
         2.5: "10px",

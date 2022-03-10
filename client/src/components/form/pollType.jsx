@@ -1,9 +1,9 @@
 import React from "react";
 
-const PollType = ({ isBasic, onPollTypeSelect }) => {
-  let inputTitle = "block text-sml font-medium mb-3";
-  let radio = "relative top-0.5 w-4 h-4 mr-2";
+let inputTitle = "block text-sml font-medium mb-3";
+let radio = "relative top-0.5 w-4 h-4 mr-2";
 
+const PollType = ({ isBasic, onPollTypeSelect }) => {
   return (
     <div className="flex items-baseline">
       <input

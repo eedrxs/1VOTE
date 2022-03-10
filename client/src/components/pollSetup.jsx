@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PollDetails from "./form/pollDetails";
 import Duration from "./form/duration";
 import TypeAndCandidates from "./form/typeAndCandidates";
+import EligibleVoters from "./form/eligibleVoters";
 class PollSetup extends Component {
   state = {
     pollTitle: "",
@@ -68,6 +69,11 @@ class PollSetup extends Component {
     this.setState({ categories });
   };
 
+  handleVotersUpload = voters => {
+    this.setState({ voters });
+    console.log(voters);
+  };
+
   render() {
     const page = "bg-bkblue w-full h-full box-border pt-10 pb-10 font-mono";
     const form =
@@ -93,6 +99,7 @@ class PollSetup extends Component {
             onAddCategory={this.handleAddCategory}
             onRemoveCategory={this.handleRemoveCategory}
           />
+          <EligibleVoters onVotersUpload={this.handleVotersUpload} />
         </form>
       </main>
     );
