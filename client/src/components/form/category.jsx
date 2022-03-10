@@ -8,7 +8,8 @@ const Category = ({
   categoryId,
   category,
   onAddCandidate,
-  onRemoveCandidate
+  onRemoveCandidate,
+  onRemoveCategory
 }) => {
   return (
     <div
@@ -24,6 +25,7 @@ const Category = ({
             icon={faXmark}
             size="2x"
             className="inline-block absolute text-bkblue bg-mblue rounded-full right-0 h-2.5 w-2.5 p-1"
+            onClick={() => onRemoveCategory(categoryId)}
           />
         </div>
       )}

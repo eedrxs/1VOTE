@@ -5,7 +5,6 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 let candidate = "";
 const setCandidate = name => {
   candidate = name;
-  console.log(candidate);
 };
 
 const AddCandidate = ({ categoryId, onAddCandidate }) => {

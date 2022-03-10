@@ -1,6 +1,6 @@
 import React from "react";
 
-const PollType = props => {
+const PollType = ({ isBasic, onPollTypeSelect }) => {
   let inputTitle = "block text-sml font-medium mb-3";
   let radio = "relative top-0.5 w-4 h-4 mr-2";
 
@@ -11,8 +11,8 @@ const PollType = props => {
         id="basic"
         name="poll-type"
         className={radio}
-        checked={props.isBasic}
-        onClick={() => props.onPollType(true)}
+        checked={isBasic}
+        onClick={() => onPollTypeSelect(true)}
       />
       <label htmlFor="basic" className={inputTitle + " mr-5"}>
         Basic
@@ -22,7 +22,7 @@ const PollType = props => {
         id="categorised"
         name="poll-type"
         className={radio}
-        onClick={() => props.onPollType(false)}
+        onClick={() => onPollTypeSelect(false)}
       />
       <label htmlFor="categorised" className={inputTitle}>
         Categorised

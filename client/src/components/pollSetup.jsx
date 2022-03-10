@@ -11,8 +11,8 @@ class PollSetup extends Component {
     isBasic: true,
     categories: [
       {
-        name: "Basic",
-        candidates: ["Samuel Ajayi Onafuye", "Walter Nnaji"]
+        name: "",
+        candidates: []
       }
     ],
     voters: []
@@ -20,39 +20,51 @@ class PollSetup extends Component {
 
   handleTitle = pollTitle => {
     this.setState({ pollTitle });
-    console.log(pollTitle);
   };
 
   handlePollCode = pollCode => {
     this.setState({ pollCode });
-    console.log(pollCode);
   };
 
   handleStartTime = startTime => {
     this.setState({ startTime });
-    console.log(startTime);
   };
 
   handleEndTime = endTime => {
     this.setState({ endTime });
-    console.log(endTime);
   };
 
-  handlePollType = isBasic => {
-    this.setState({ isBasic });
-    console.log(isBasic);
+  handlePollTypeSelect = isBasic => {
+    this.setState(() => {
+      if (!isBasic) {
+        return { isBasic, categories: [] };
+      } else {
+        return { isBasic, categories: [{ name: "", candidates: [] }] };
+      }
+    });
   };
 
   handleAddCandidate = (categoryId, candidate) => {
     let categories = [...this.state.categories];
     categories[categoryId].candidates.push(candidate);
     this.setState({ categories });
-    console.log(candidate);
   };
 
   handleRemoveCandidate = (categoryId, candidateId) => {
     let categories = [...this.state.categories];
     categories[categoryId].candidates.splice(candidateId, 1);
+    this.setState({ categories });
+  };
+
+  handleAddCategory = name => {
+    let categories = [...this.state.categories];
+    categories.push({ name, candidates: [] });
+    this.setState({ categories });
+  };
+
+  handleRemoveCategory = categoryId => {
+    let categories = [...this.state.categories];
+    categories.splice(categoryId, 1);
     this.setState({ categories });
   };
 
@@ -75,9 +87,11 @@ class PollSetup extends Component {
           <TypeAndCandidates
             isBasic={this.state.isBasic}
             categories={this.state.categories}
-            onPollType={this.handlePollType}
+            onPollTypeSelect={this.handlePollTypeSelect}
             onAddCandidate={this.handleAddCandidate}
             onRemoveCandidate={this.handleRemoveCandidate}
+            onAddCategory={this.handleAddCategory}
+            onRemoveCategory={this.handleRemoveCategory}
           />
         </form>
       </main>
