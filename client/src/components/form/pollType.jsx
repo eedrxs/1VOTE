@@ -12,7 +12,7 @@ const PollType = ({ isBasic, onPollTypeSelect }) => {
         name="poll-type"
         className={radio}
         checked={isBasic}
-        onClick={() => onPollTypeSelect(true)}
+        onChange={() => onPollTypeSelect(true)}
       />
       <label htmlFor="basic" className={inputTitle + " mr-5"}>
         Basic
@@ -22,7 +22,7 @@ const PollType = ({ isBasic, onPollTypeSelect }) => {
         id="categorised"
         name="poll-type"
         className={radio}
-        onClick={() => onPollTypeSelect(false)}
+        onChange={() => onPollTypeSelect(false)}
       />
       <label htmlFor="categorised" className={inputTitle}>
         Categorised

@@ -16,7 +16,7 @@ const Duration = props => {
               Start
             </label>
             <input
-              type="date"
+              type="datetime-local"
               id="start-time"
               className={dateInput}
               required
@@ -28,7 +28,7 @@ const Duration = props => {
               End
             </label>
             <input
-              type="date"
+              type="datetime-local"
               id="end-time"
               className={dateInput}
               required

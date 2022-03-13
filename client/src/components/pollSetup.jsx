@@ -1,10 +1,15 @@
 import React, { Component } from "react";
+import Web3 from "web3";
+import { POLLFACTORY_ABI, POLLFACTORY_ADDRESS } from "../config";
 import PollDetails from "./form/pollDetails";
 import Duration from "./form/duration";
 import TypeAndCandidates from "./form/typeAndCandidates";
 import EligibleVoters from "./form/eligibleVoters";
+import Finish from "./form/finish";
 class PollSetup extends Component {
   state = {
+    account: "",
+    pollFactory: null,
     pollTitle: "",
     pollCode: "",
     startTime: null,
@@ -19,6 +24,31 @@ class PollSetup extends Component {
     voters: []
   };
 
+  async loadBlockchainData() {
+    const web3 = new Web3(Web3.givenProvider || "http://localhost:7545");
+    const network = await web3.eth.net.getNetworkType();
+    await window.ethereum.enable();
+    const accounts = await web3.eth.requestAccounts();
+    this.setState({ account: accounts[0] });
+    const pollFactory = new web3.eth.Contract(
+      POLLFACTORY_ABI,
+      POLLFACTORY_ADDRESS
+    );
+    this.setState({ pollFactory });
+
+    let pollAddress = pollFactory.methods
+      .getPollAddress("SUG22")
+      .call()
+      .then(
+        result => console.log(result),
+        error => console.log(error.message)
+      );
+  }
+
+  componentWillMount() {
+    this.loadBlockchainData();
+  }
+
   handleTitle = pollTitle => {
     this.setState({ pollTitle });
   };
@@ -28,10 +58,12 @@ class PollSetup extends Component {
   };
 
   handleStartTime = startTime => {
+    startTime = new Date(startTime).getTime() / 1000.0;
     this.setState({ startTime });
   };
 
   handleEndTime = endTime => {
+    endTime = new Date(endTime).getTime() / 1000.0;
     this.setState({ endTime });
   };
 
@@ -71,13 +103,14 @@ class PollSetup extends Component {
 
   handleVotersUpload = voters => {
     this.setState({ voters });
-    console.log(voters);
   };
+
+  handleFinishUp = () => {};
 
   render() {
     const page = "bg-bkblue w-full h-full box-border pt-10 pb-10 font-mono";
     const form =
-      "flex flex-col mx-auto mb-1 w-80 lg:w-96 bg-ablue text-mblue rounded-xl border-3 border-bdblue";
+      "flex flex-col mx-auto mb-5 w-80 lg:w-96 bg-ablue text-mblue rounded-xl border-3 border-bdblue";
 
     return (
       <main className={page}>
@@ -101,6 +134,7 @@ class PollSetup extends Component {
           />
           <EligibleVoters onVotersUpload={this.handleVotersUpload} />
         </form>
+        <Finish />
       </main>
     );
   }

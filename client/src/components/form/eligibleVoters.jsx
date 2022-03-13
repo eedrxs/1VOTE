@@ -17,7 +17,7 @@ const EligibleVoters = ({ onVotersUpload }) => {
   return (
     <div className="w-90/0 pt-4 pb-7 mx-auto">
       <h4 className={sectionTitle}>Eligible voters</h4>
-      <div class="flex justify-center items-center w-full border-2 border-dashed border-mblue rounded-md bg-bkblue h-30 m-auto mb-4">
+      <div className="flex justify-center items-center w-full border-2 border-dashed border-mblue rounded-md bg-bkblue h-30 m-auto mb-4">
         <label
           className="font-sans font-bold text-base border-2 border-mblue rounded-md bg-ablue hover:bg-dablue cursor-pointer pt-2.5 pb-2.5 pl-7.5 pr-7.5 mb-0"
           htmlFor="upload"

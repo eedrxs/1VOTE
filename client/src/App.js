@@ -3,8 +3,6 @@ import { Route, Switch } from "react-router-dom";
 import HomePage from "./components/homePage";
 import PollSetup from "./components/pollSetup";
 class App extends Component {
-  state = {};
-
   render() {
     return (
       <div className="content">
