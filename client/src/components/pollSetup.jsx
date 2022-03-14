@@ -7,21 +7,27 @@ import TypeAndCandidates from "./form/typeAndCandidates";
 import EligibleVoters from "./form/eligibleVoters";
 import Finish from "./form/finish";
 class PollSetup extends Component {
+  constructor() {
+    super();
+    this.loadBlockchainData();
+  }
+
   state = {
     account: "",
+    web3: new Web3(Web3.givenProvider || "http://localhost:7545"),
     pollFactory: null,
-    pollTitle: "",
     pollCode: "",
+    pollTitle: "",
     startTime: null,
     endTime: null,
-    isBasic: true,
     categories: [
       {
         name: "",
         candidates: []
       }
     ],
-    voters: []
+    voters: [],
+    isBasic: true
   };
 
   async loadBlockchainData() {
@@ -35,18 +41,6 @@ class PollSetup extends Component {
       POLLFACTORY_ADDRESS
     );
     this.setState({ pollFactory });
-
-    let pollAddress = pollFactory.methods
-      .getPollAddress("SUG22")
-      .call()
-      .then(
-        result => console.log(result),
-        error => console.log(error.message)
-      );
-  }
-
-  componentWillMount() {
-    this.loadBlockchainData();
   }
 
   handleTitle = pollTitle => {
@@ -105,7 +99,52 @@ class PollSetup extends Component {
     this.setState({ voters });
   };
 
-  handleFinishUp = () => {};
+  handleFinishUp = () => {
+    const {
+      pollTitle,
+      pollCode,
+      startTime,
+      endTime,
+      categories,
+      voters,
+      isBasic,
+      account,
+      web3,
+      pollFactory
+    } = this.state;
+
+    const encodedCategories = categories.map((category, index) => {
+      let arrayCategory = Object.values(category);
+      arrayCategory.unshift(index);
+      arrayCategory[2] = arrayCategory[2].map((candidate, index) => [
+        index,
+        candidate,
+        0
+      ]);
+
+      return arrayCategory;
+    });
+
+    pollFactory.methods
+      .createPoll(
+        pollCode,
+        pollTitle,
+        startTime,
+        endTime,
+        encodedCategories,
+        voters,
+        isBasic
+      )
+      .send({ from: account, gas: 3000000, value: web3.utils.toWei("0.1") })
+      .then(
+        receipt => {
+          console.log("Successful transaction:", receipt);
+          // window.location.replace("http://localhost:3000");
+          // window.location.assign("http://localhost:3000/join-poll");
+        },
+        error => console.log(error)
+      );
+  };
 
   render() {
     const page = "bg-bkblue w-full h-full box-border pt-10 pb-10 font-mono";
@@ -134,7 +173,7 @@ class PollSetup extends Component {
           />
           <EligibleVoters onVotersUpload={this.handleVotersUpload} />
         </form>
-        <Finish />
+        <Finish onFinishUp={this.handleFinishUp} />
       </main>
     );
   }

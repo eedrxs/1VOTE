@@ -5,7 +5,7 @@ pragma experimental ABIEncoderV2;
 import "./Poll.sol";
 import "./PollVariables.sol";
 
-contract OneVoteFactory is PollVariables {
+contract PollFactory is PollVariables {
     mapping(string => Poll) polls;
     event pollCreated(
         string indexed pollTitle,

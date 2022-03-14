@@ -35,13 +35,11 @@ contract Poll is PollVariables {
         // Store categories and candidates
         for (uint256 i; i < _categories.length; i++) {
             categories.push();
-            categories[i].id = _categories[i].id;
+            categories[i].id = i; // _categories[i].id;
             categories[i].name = _categories[i].name;
             for (uint256 j; j < _categories[i].candidates.length; j++) {
                 categories[i].candidates.push();
-                categories[i].candidates[j].id = _categories[i]
-                    .candidates[j]
-                    .id;
+                categories[i].candidates[j].id = j; //_categories[i].candidates[j].id;
                 categories[i].candidates[j].name = _categories[i]
                     .candidates[j]
                     .name;
@@ -69,8 +67,8 @@ contract Poll is PollVariables {
             voteStatus[_categoryID].hasVoted[msg.sender] == false,
             "You've already voted!"
         );
-        // require(block.timestamp >= startTime, "Poll has not started!");
-        // require(block.timestamp <= startTime, "Poll has ended!");
+        require(block.timestamp >= startTime, "Poll has not started!");
+        require(block.timestamp <= startTime, "Poll has ended!");
 
         voteStatus[_categoryID].hasVoted[msg.sender] = true;
         categories[_categoryID].candidates[_candidateID].votes += 1;
