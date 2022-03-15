@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const JoinPoll = () => {
   return (
@@ -12,9 +13,12 @@ const JoinPoll = () => {
           id=""
           className="block border-2 border-mblue rounded-2xl focus:outline-none focus:ring-2 font-bold text-xl text-mblue text-center py-5 px-3 mt-44 sm:mt-60"
         />
-        <button className="block py-5 bg-mblue hover:bg-dmblue font-medium text-white text-center rounded-2xl mt-5">
+        <Link
+          to="/poll"
+          className="block py-5 bg-mblue hover:bg-dmblue font-medium text-white text-center text-xl rounded-2xl mt-5"
+        >
           Join
-        </button>
+        </Link>
       </div>
     </main>
   );

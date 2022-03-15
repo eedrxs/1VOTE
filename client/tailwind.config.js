@@ -30,6 +30,7 @@ module.exports = {
       },
       fontSize: {
         xxs: "0.55rem",
+        xsm: "0.7rem",
         sml: "0.8rem",
         sm: "0.95rem"
       },
@@ -38,21 +39,30 @@ module.exports = {
         4: "10px"
       },
       padding: {
+        1.5: "6px",
         2.5: "10px",
         7.5: "30px"
       },
       height: {
         2.5: "10px",
-        30: "120px"
+        30: "120px",
+        "90/0": "90%"
       },
       width: {
         2.5: "10px",
         "14/0": "14%",
         "15/0": "15%",
-        "90/0": "90%"
+        "90/0": "90%",
+        "22/1": "22rem"
       },
       inset: {
         0.5: "3px"
+      },
+      zIndex: {
+        "-1": "-1"
+      },
+      screens: {
+        xs: "320px"
       }
     },
     fontFamily: {
