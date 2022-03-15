@@ -7,6 +7,7 @@ const page = "bg-bkblue w-full h-full box-border pt-10 pb-10";
 
 const Poll = () => {
   const [pollDetails, setPollDetails] = useState(getPollDetails());
+
   const {
     pollTitle,
     pollAddress,
@@ -33,7 +34,7 @@ const Poll = () => {
           pollTitle={pollTitle}
           pollAddress={pollAddress}
           startTime={startTime}
-          endTim={endTime}
+          endTime={endTime}
         />
 
         <Categories />
