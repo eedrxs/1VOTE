@@ -11,7 +11,7 @@ class HomePage extends Component {
 
         <Link
           to="/poll-setup"
-          className="block py-5 w-80 mx-auto mt-44 bg-mblue font-medium text-white text-center rounded-2xl"
+          className="block py-5 w-80 mx-auto mt-44 sm:mt-60 bg-mblue font-medium text-white text-center rounded-2xl"
         >
           Set up a poll
         </Link>
