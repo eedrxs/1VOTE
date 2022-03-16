@@ -6,6 +6,7 @@ const Categories = ({ categories, isBasicPoll }) => {
     <React.Fragment>
       {categories.map(([categoryId, categoryName, candidates, totalVotes]) => (
         <Category
+          key={categoryId}
           categoryId={categoryId}
           categoryName={categoryName}
           candidates={candidates}
