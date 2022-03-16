@@ -139,8 +139,8 @@ class PollSetup extends Component {
       .then(
         receipt => {
           console.log("Successful transaction:", receipt);
-          window.location.replace("http://localhost:3000");
-          window.location.assign("http://localhost:3000/join-poll");
+          // window.location.replace("http://localhost:3000");
+          // window.location.assign("http://localhost:3000/join-poll");
         },
         error => console.log(error)
       );

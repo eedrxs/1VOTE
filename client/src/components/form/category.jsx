@@ -38,6 +38,7 @@ const Category = ({
             className="font-medium text-sm border-2 border-bdblue focus:outline-none rounded-md w-full h-10 p-2.5"
           />
           <button
+            type="button"
             onClick={() => onRemoveCandidate(categoryId, index)}
             className="absolute bg-mblue border-0 w-15/0 h-full top-0 right-0 rounded-tr-md rounded-br-md hover:bg-dmblue cursor-pointer"
           >
