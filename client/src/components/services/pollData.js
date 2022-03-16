@@ -11,7 +11,8 @@ const pollData = {
       [
         [0, "Donice Ubaru", 284],
         [1, "Gbenga Kamoru", 150]
-      ]
+      ],
+      434
     ],
     [
       1,
@@ -20,7 +21,8 @@ const pollData = {
         [0, "Osazuwa Efosa", 89],
         [1, "Majid Ibrahim", 197],
         [2, "Stanley Ikechukwu", 56]
-      ]
+      ],
+      342
     ]
   ],
   isBasicPoll: false

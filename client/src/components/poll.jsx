@@ -18,13 +18,13 @@ const Poll = () => {
   } = pollDetails;
 
   useEffect(async () => {
-    let _pollDetails = Object.assign({}, pollDetails);
-    _pollDetails.startTime = new Date(_pollDetails.startTime * 1000).toString();
-    _pollDetails.endTime = new Date(_pollDetails.endTime * 1000).toString();
-    let pos = _pollDetails.startTime.indexOf("GMT");
-    _pollDetails.startTime = _pollDetails.startTime.slice(0, pos - 1);
-    // setPollDetails(_pollDetails);
-    console.log(_pollDetails.startTime.toString());
+    // let _pollDetails = Object.assign({}, pollDetails);
+    // _pollDetails.startTime = new Date(_pollDetails.startTime * 1000).toString();
+    // _pollDetails.endTime = new Date(_pollDetails.endTime * 1000).toString();
+    // let pos = _pollDetails.startTime.indexOf("GMT");
+    // _pollDetails.startTime = _pollDetails.startTime.slice(0, pos - 1);
+    // // setPollDetails(_pollDetails);
+    // console.log(_pollDetails.startTime.toString());
   });
 
   return (
@@ -37,7 +37,7 @@ const Poll = () => {
           endTime={endTime}
         />
 
-        <Categories />
+        <Categories categories={categories} isBasicPoll={isBasicPoll} />
       </div>
     </main>
   );
