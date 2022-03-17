@@ -1,19 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Web3 from "web3";
-import { POLLFACTORY_ABI, POLLFACTORY_ADDRESS } from "../config";
+import { POLL_ABI, POLLFACTORY_ABI, POLLFACTORY_ADDRESS } from "../config";
 
 const JoinPoll = () => {
   const pollCodeInput = useRef();
   const [account, setAccount] = useState("");
-  const [poll, setPoll] = useState("");
   const [pollAddress, setPollAddress] = useState("");
-  const [web3, setWeb3] = useState(
-    new Web3(Web3.givenProvider || "http://localhost:7545")
+  const web3 = new Web3(Web3.givenProvider || "http://localhost:7545");
+  const pollFactory = new web3.eth.Contract(
+    POLLFACTORY_ABI,
+    POLLFACTORY_ADDRESS
   );
-  const [pollFactory, setPollFactory] = useState(
-    new web3.eth.Contract(POLLFACTORY_ABI, POLLFACTORY_ADDRESS)
-  );
+  let poll = "";
 
   useEffect(async () => {
     const accounts = await web3.eth.requestAccounts();
@@ -22,6 +21,14 @@ const JoinPoll = () => {
 
   useEffect(() => {
     console.log("Poll Address: ", pollAddress);
+    console.log("Poll: ", poll);
+    // poll.methods
+    //   .getPollDetails()
+    //   .call({
+    //     from: account,
+    //     gas: 3000000
+    //   })
+    //   .then(console.log);
   }, [pollAddress]);
 
   const getPollAddress = async () => {
@@ -32,6 +39,14 @@ const JoinPoll = () => {
         gas: 3000000
       })
       .then(address => {
+        poll = new web3.eth.Contract(POLL_ABI, address);
+        poll.methods
+          .getPollDetails()
+          .call({ from: account, gas: 3000000 })
+          .then(details => {
+            console.log(details);
+          })
+          .catch(console.log);
         setPollAddress(address);
       })
       .catch(console.log);
