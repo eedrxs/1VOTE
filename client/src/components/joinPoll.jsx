@@ -1,18 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
 import Web3 from "web3";
 import { POLL_ABI, POLLFACTORY_ABI, POLLFACTORY_ADDRESS } from "../config";
+import { Redirect } from "react-router";
 
-const JoinPoll = () => {
+const JoinPoll = ({ onPollAccess }) => {
   const pollCodeInput = useRef();
+  const [redirect, setRedirect] = useState(false);
   const [account, setAccount] = useState("");
   const [pollAddress, setPollAddress] = useState("");
+  const [pollCode, setPollCode] = useState("");
   const web3 = new Web3(Web3.givenProvider || "http://localhost:7545");
-  const pollFactory = new web3.eth.Contract(
+  const pollFactoryContract = new web3.eth.Contract(
     POLLFACTORY_ABI,
     POLLFACTORY_ADDRESS
   );
-  let poll = "";
 
   useEffect(async () => {
     const accounts = await web3.eth.requestAccounts();
@@ -21,36 +22,35 @@ const JoinPoll = () => {
 
   useEffect(() => {
     console.log("Poll Address: ", pollAddress);
-    console.log("Poll: ", poll);
-    // poll.methods
-    //   .getPollDetails()
-    //   .call({
-    //     from: account,
-    //     gas: 3000000
-    //   })
-    //   .then(console.log);
+    // console.log("Poll: ", poll);
   }, [pollAddress]);
 
   const getPollAddress = async () => {
-    pollFactory.methods
-      .getPollAddress(pollCodeInput.current.value)
+    const pollCode = pollCodeInput.current.value;
+    pollFactoryContract.methods
+      .getPollAddress(pollCode)
       .call({
         from: account,
         gas: 3000000
       })
-      .then(address => {
-        poll = new web3.eth.Contract(POLL_ABI, address);
-        poll.methods
+      .then(pollAddress => {
+        setPollCode(pollCode);
+        const pollContract = new web3.eth.Contract(POLL_ABI, pollAddress);
+        pollContract.methods
           .getPollDetails()
           .call({ from: account, gas: 3000000 })
-          .then(details => {
-            console.log(details);
+          .then(pollDetails => {
+            console.log(pollDetails);
+            onPollAccess(pollCode, pollContract, pollDetails, account);
+            setRedirect(true);
           })
           .catch(console.log);
-        setPollAddress(address);
+        setPollAddress(pollAddress);
       })
       .catch(console.log);
   };
+
+  if (redirect) return <Redirect push to={`/`} />;
 
   return (
     <main className="bg-bkblue h-screen w-screen">

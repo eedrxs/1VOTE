@@ -12,6 +12,7 @@ contract PollVariables {
     struct Category {
         uint256 id;
         string name;
+        uint256 totalVotes;
         Candidate[] candidates;
     }
 

@@ -1,4 +1,4 @@
-export const POLLFACTORY_ADDRESS = "0xaA1D1614BC7b632803CA74Bb5130A342F0489290";
+export const POLLFACTORY_ADDRESS = "0x0EA9DE307E7eEc6C1d35a6975A16b3dC27493d46"; //"0xaA1D1614BC7b632803CA74Bb5130A342F0489290";
 
 export const POLLFACTORY_ABI = [
   {
@@ -34,6 +34,11 @@ export const POLLFACTORY_ABI = [
             internalType: "string",
             name: "name",
             type: "string"
+          },
+          {
+            internalType: "uint256",
+            name: "totalVotes",
+            type: "uint256"
           },
           {
             components: [
@@ -165,6 +170,11 @@ export const POLL_ABI = [
             type: "string"
           },
           {
+            internalType: "uint256",
+            name: "totalVotes",
+            type: "uint256"
+          },
+          {
             components: [
               {
                 internalType: "uint256",
@@ -261,6 +271,11 @@ export const POLL_ABI = [
             type: "string"
           },
           {
+            internalType: "uint256",
+            name: "totalVotes",
+            type: "uint256"
+          },
+          {
             components: [
               {
                 internalType: "uint256",
@@ -311,6 +326,11 @@ export const POLL_ABI = [
             internalType: "string",
             name: "name",
             type: "string"
+          },
+          {
+            internalType: "uint256",
+            name: "totalVotes",
+            type: "uint256"
           },
           {
             components: [

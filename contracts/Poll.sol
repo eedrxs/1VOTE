@@ -37,6 +37,7 @@ contract Poll is PollVariables {
             categories.push();
             categories[i].id = i; // _categories[i].id;
             categories[i].name = _categories[i].name;
+            categories[i].totalVotes = 0;
             for (uint256 j; j < _categories[i].candidates.length; j++) {
                 categories[i].candidates.push();
                 categories[i].candidates[j].id = j; //_categories[i].candidates[j].id;
@@ -72,6 +73,7 @@ contract Poll is PollVariables {
 
         voteStatus[_categoryID].hasVoted[msg.sender] = true;
         categories[_categoryID].candidates[_candidateID].votes += 1;
+        categories[_categoryID].totalVotes += 1;
         emit voteCasted(_categoryID, _candidateID);
     }
 

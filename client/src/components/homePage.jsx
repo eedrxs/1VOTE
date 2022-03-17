@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-// import getWeb3 from "../getWeb3";
 
 const HomePage = () => {
-  // useEffect(() => getWeb3());
-
   return (
     <main className="bg-bkblue h-screen w-screen">
       <h1 className="font-sans font-extrabold text-6xl text-center text-mblue pt-40">

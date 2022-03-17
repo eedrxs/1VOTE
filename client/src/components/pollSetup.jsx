@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Web3 from "web3";
+import { Redirect } from "react-router-dom";
 import { POLLFACTORY_ABI, POLLFACTORY_ADDRESS } from "../config";
 import PollDetails from "./form/pollDetails";
 import Duration from "./form/duration";
@@ -13,9 +14,10 @@ class PollSetup extends Component {
   }
 
   state = {
+    redirect: false,
     account: "",
-    web3: new Web3(Web3.givenProvider || "http://localhost:7545"),
-    pollFactory: null,
+    // web3: new Web3(Web3.givenProvider || "http://localhost:7545"),
+    pollFactoryContract: null,
     pollCode: "",
     pollTitle: "",
     startTime: null,
@@ -36,11 +38,12 @@ class PollSetup extends Component {
     await window.ethereum.enable();
     const accounts = await web3.eth.requestAccounts();
     this.setState({ account: accounts[0] });
-    const pollFactory = new web3.eth.Contract(
+    const pollFactoryContract = new web3.eth.Contract(
       POLLFACTORY_ABI,
       POLLFACTORY_ADDRESS
     );
-    this.setState({ pollFactory });
+    console.log(pollFactoryContract);
+    this.setState({ pollFactoryContract });
   }
 
   handleTitle = pollTitle => {
@@ -109,14 +112,15 @@ class PollSetup extends Component {
       voters,
       isBasic,
       account,
-      web3,
-      pollFactory
+      // web3,
+      pollFactoryContract
     } = this.state;
 
     const encodedCategories = categories.map((category, index) => {
       let arrayCategory = Object.values(category);
       arrayCategory.unshift(index);
-      arrayCategory[2] = arrayCategory[2].map((candidate, index) => [
+      arrayCategory.splice(2, 0, 0);
+      arrayCategory[3] = arrayCategory[3].map((candidate, index) => [
         index,
         candidate,
         0
@@ -125,7 +129,9 @@ class PollSetup extends Component {
       return arrayCategory;
     });
 
-    pollFactory.methods
+    console.log(pollFactoryContract);
+
+    pollFactoryContract.methods
       .createPoll(
         pollCode,
         pollTitle,
@@ -135,12 +141,11 @@ class PollSetup extends Component {
         voters,
         isBasic
       )
-      .send({ from: account, gas: 3000000, value: web3.utils.toWei("0.1") })
+      .send({ from: account, gas: 3000000 })
       .then(
         receipt => {
           console.log("Successful transaction:", receipt);
-          // window.location.replace("http://localhost:3000");
-          // window.location.assign("http://localhost:3000/join-poll");
+          this.setState({ redirect: true });
         },
         error => console.log(error)
       );
@@ -150,6 +155,8 @@ class PollSetup extends Component {
     const page = "bg-bkblue w-full h-full box-border pt-10 pb-10 font-mono";
     const form =
       "flex flex-col mx-auto mb-5 w-80 lg:w-96 bg-ablue text-mblue rounded-xl border-3 border-bdblue";
+
+    if (this.state.redirect) return <Redirect push to="/join-poll" />;
 
     return (
       <main className={page}>
