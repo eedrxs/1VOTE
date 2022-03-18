@@ -27,6 +27,7 @@ const JoinPoll = ({ onPollAccess }) => {
 
   const getPollAddress = async () => {
     const pollCode = pollCodeInput.current.value;
+    setPollCode(pollCode);
     pollFactoryContract.methods
       .getPollAddress(pollCode)
       .call({
@@ -34,7 +35,7 @@ const JoinPoll = ({ onPollAccess }) => {
         gas: 3000000
       })
       .then(pollAddress => {
-        setPollCode(pollCode);
+        // setPollCode(pollCode);
         const pollContract = new web3.eth.Contract(POLL_ABI, pollAddress);
         pollContract.methods
           .getPollDetails()
@@ -50,7 +51,7 @@ const JoinPoll = ({ onPollAccess }) => {
       .catch(console.log);
   };
 
-  if (redirect) return <Redirect push to={`/`} />;
+  if (redirect) return <Redirect push to={`/join-poll/${pollCode}`} />;
 
   return (
     <main className="bg-bkblue h-screen w-screen">
