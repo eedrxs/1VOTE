@@ -7,7 +7,6 @@ const JoinPoll = ({ onPollAccess }) => {
   const pollCodeInput = useRef();
   const [redirect, setRedirect] = useState(false);
   const [account, setAccount] = useState("");
-  const [pollAddress, setPollAddress] = useState("");
   const [pollCode, setPollCode] = useState("");
   const web3 = new Web3(Web3.givenProvider || "http://localhost:7545");
   const pollFactoryContract = new web3.eth.Contract(
@@ -20,11 +19,6 @@ const JoinPoll = ({ onPollAccess }) => {
     setAccount(accounts[0]);
   }, []);
 
-  useEffect(() => {
-    console.log("Poll Address: ", pollAddress);
-    // console.log("Poll: ", poll);
-  }, [pollAddress]);
-
   const getPollAddress = async () => {
     const pollCode = pollCodeInput.current.value;
     setPollCode(pollCode);
@@ -35,18 +29,22 @@ const JoinPoll = ({ onPollAccess }) => {
         gas: 3000000
       })
       .then(pollAddress => {
-        // setPollCode(pollCode);
         const pollContract = new web3.eth.Contract(POLL_ABI, pollAddress);
         pollContract.methods
           .getPollDetails()
           .call({ from: account, gas: 3000000 })
           .then(pollDetails => {
             console.log(pollDetails);
-            onPollAccess(pollCode, pollContract, pollDetails, account);
+            onPollAccess(
+              pollCode,
+              pollContract,
+              pollAddress,
+              pollDetails,
+              account
+            );
             setRedirect(true);
           })
           .catch(console.log);
-        setPollAddress(pollAddress);
       })
       .catch(console.log);
   };

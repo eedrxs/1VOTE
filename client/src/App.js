@@ -6,20 +6,31 @@ import JoinPoll from "./components/joinPoll";
 import Poll from "./components/poll";
 class App extends Component {
   state = {
-    pollCode: "new",
+    pollCode: null,
     pollContract: null,
+    pollAddress: null,
     pollDetails: null,
     account: null
   };
 
-  handlePollAccess = (pollCode, pollContract, pollDetails, account) => {
-    this.setState({ pollCode, pollContract, pollDetails, account });
-    console.log("Poll Accessed!", pollCode);
+  handlePollAccess = (
+    pollCode,
+    pollContract,
+    pollAddress,
+    pollDetails,
+    account
+  ) => {
+    this.setState({
+      pollCode,
+      pollContract,
+      pollAddress,
+      pollDetails,
+      account
+    });
   };
 
   render() {
     const { pollCode } = this.state;
-    console.log("Rerendered: ", pollCode);
 
     return (
       <div className="content">
