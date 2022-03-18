@@ -1,4 +1,4 @@
-export const POLLFACTORY_ADDRESS = "0x0EA9DE307E7eEc6C1d35a6975A16b3dC27493d46"; //"0xaA1D1614BC7b632803CA74Bb5130A342F0489290";
+export const POLLFACTORY_ADDRESS = "0x88AF2ec0De051219F508F676e3AE4827B47d420d"; //"0x0EA9DE307E7eEc6C1d35a6975A16b3dC27493d46"; //"0xaA1D1614BC7b632803CA74Bb5130A342F0489290";
 
 export const POLLFACTORY_ABI = [
   {
@@ -259,6 +259,11 @@ export const POLL_ABI = [
         type: "uint256"
       },
       {
+        internalType: "bool",
+        name: "",
+        type: "bool"
+      },
+      {
         components: [
           {
             internalType: "uint256",
@@ -303,9 +308,9 @@ export const POLL_ABI = [
         type: "tuple[]"
       },
       {
-        internalType: "bool",
+        internalType: "bool[]",
         name: "",
-        type: "bool"
+        type: "bool[]"
       }
     ],
     stateMutability: "view",
@@ -358,6 +363,25 @@ export const POLL_ABI = [
         internalType: "struct PollVariables.Category[]",
         name: "",
         type: "tuple[]"
+      }
+    ],
+    stateMutability: "view",
+    type: "function"
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "_voter",
+        type: "address"
+      }
+    ],
+    name: "getVoteStatus",
+    outputs: [
+      {
+        internalType: "bool[]",
+        name: "",
+        type: "bool[]"
       }
     ],
     stateMutability: "view",

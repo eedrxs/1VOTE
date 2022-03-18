@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Category from "./category";
 
-const Categories = ({ categories, isBasicPoll }) => {
-  console.log(categories);
+const Categories = ({ categories, isBasicPoll, onVote }) => {
   return (
     <React.Fragment>
       {categories.map(([categoryId, categoryName, totalVotes, candidates]) => (
@@ -13,6 +12,7 @@ const Categories = ({ categories, isBasicPoll }) => {
           candidates={candidates}
           totalVotes={totalVotes}
           isBasicPoll={isBasicPoll}
+          onVote={onVote}
         />
       ))}
     </React.Fragment>

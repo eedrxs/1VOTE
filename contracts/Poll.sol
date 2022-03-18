@@ -69,7 +69,7 @@ contract Poll is PollVariables {
             "You've already voted!"
         );
         require(block.timestamp >= startTime, "Poll has not started!");
-        require(block.timestamp <= startTime, "Poll has ended!");
+        require(block.timestamp <= endTime, "Poll has ended!");
 
         voteStatus[_categoryID].hasVoted[msg.sender] = true;
         categories[_categoryID].candidates[_candidateID].votes += 1;
@@ -85,8 +85,9 @@ contract Poll is PollVariables {
             string memory,
             uint256,
             uint256,
+            bool,
             Category[] memory,
-            bool
+            bool[] memory
         )
     {
         return (
@@ -94,13 +95,22 @@ contract Poll is PollVariables {
             pollTitle,
             startTime,
             endTime,
+            isBasicPoll,
             getPollStatus(),
-            isBasicPoll
+            getVoteStatus(msg.sender)
         );
     }
 
     function getPollStatus() public view returns (Category[] memory) {
         return (categories);
+    }
+
+    function getVoteStatus(address _voter) public view returns (bool[] memory) {
+        bool[] memory _voteStatus = new bool[](categories.length - 1);
+        for (uint256 i; i < categories.length; i++) {
+            _voteStatus[i] = voteStatus[i].hasVoted[_voter];
+        }
+        return _voteStatus;
     }
 
     function isEligible(address _prospectiveVoter) public view returns (bool) {

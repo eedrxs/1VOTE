@@ -15,6 +15,14 @@ const Poll = ({
     5: isBasicPoll
   } = pollDetails;
 
+  const handleVote = (categoryId, candidateId) => {
+    pollContract.methods
+      .vote(categoryId, candidateId)
+      .send({ from: account, gas: 3000000 })
+      .then(console.log)
+      .catch(console.log);
+  };
+
   return (
     <main className={page}>
       <div className="flex flex-col h-screen w-80 xs:w-22/1 lg:w-96 font-mono text-mblue mx-auto">
@@ -25,7 +33,11 @@ const Poll = ({
           endTime={endTime}
         />
 
-        <Categories categories={categories} isBasicPoll={isBasicPoll} />
+        <Categories
+          categories={categories}
+          isBasicPoll={isBasicPoll}
+          onVote={handleVote}
+        />
       </div>
     </main>
   );

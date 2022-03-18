@@ -16,7 +16,6 @@ class PollSetup extends Component {
   state = {
     redirect: false,
     account: "",
-    // web3: new Web3(Web3.givenProvider || "http://localhost:7545"),
     pollFactoryContract: null,
     pollCode: "",
     pollTitle: "",
@@ -112,7 +111,6 @@ class PollSetup extends Component {
       voters,
       isBasic,
       account,
-      // web3,
       pollFactoryContract
     } = this.state;
 

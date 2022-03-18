@@ -8,7 +8,8 @@ const Category = ({
   categoryName,
   candidates,
   totalVotes,
-  isBasicPoll
+  isBasicPoll,
+  onVote
 }) => {
   let [selectedCandidate, setSelectedCandidate] = useState("null");
 
@@ -80,6 +81,7 @@ const Category = ({
                 : " bg-mblue hover:bg-dmblue")
             }
             disabled={selectedCandidate === "null" ? true : false}
+            onClick={() => onVote(categoryId, selectedCandidate)}
           >
             Vote
           </button>
