@@ -5,14 +5,16 @@ import Categories from "./categories";
 const page = "bg-bkblue w-full h-full box-border pt-10 pb-10";
 
 const Poll = ({
-  data: { pollContract, pollAddress, pollDetails, account }
+  data: { pollContract, pollAddress, pollDetails, account },
+  onPollStatus
 }) => {
   const {
     1: pollTitle,
     2: startTime,
     3: endTime,
-    4: categories,
-    5: isBasicPoll
+    4: isBasicPoll,
+    5: categories,
+    6: voteStatus
   } = pollDetails;
 
   const handleVote = (categoryId, candidateId) => {
@@ -22,6 +24,20 @@ const Poll = ({
       .then(console.log)
       .catch(console.log);
   };
+
+  useEffect(() => {
+    pollContract.events.voteCasted((error, event) => {
+      if (error) console.log(error);
+      console.log(event);
+      pollContract.methods
+        .getPollStatus()
+        .call({ from: account, gas: 3000000 })
+        .then(categories => {
+          console.log(categories);
+          onPollStatus(categories);
+        });
+    });
+  });
 
   return (
     <main className={page}>
@@ -34,8 +50,9 @@ const Poll = ({
         />
 
         <Categories
-          categories={categories}
           isBasicPoll={isBasicPoll}
+          categories={categories}
+          voteStatus={voteStatus}
           onVote={handleVote}
         />
       </div>

@@ -4,11 +4,12 @@ const category =
   "flex flex-col mx-auto my-5 w-80 xs:w-22/1 lg:w-96 bg-ablue text-mblue rounded-xl border-3 border-bdblue";
 
 const Category = ({
+  isBasicPoll,
   categoryId,
   categoryName,
   candidates,
   totalVotes,
-  isBasicPoll,
+  voteStatus: hasVoted,
   onVote
 }) => {
   let [selectedCandidate, setSelectedCandidate] = useState("null");
@@ -58,6 +59,7 @@ const Category = ({
               "col-span-4 font-semibold text-lg text-mblue text-opacity-50 border-2 rounded-lg border-bdblue focus:outline-none bg-white p-1.5 pl-4" +
               (selectedCandidate !== "null" ? " ring-2" : "")
             }
+            disabled={hasVoted}
           >
             <option value="null" disabled hidden>
               Pick a candidate
@@ -75,15 +77,17 @@ const Category = ({
           <button
             type="button"
             className={
-              "block font-bold text-center text-white rounded-lg text-sm h-95/0 my-auto p-1.5 pt-2" +
+              "block font-bold text-center text-white rounded-lg text-msm h-95/0 my-auto p-1.5 pt-2" +
               (selectedCandidate === "null"
                 ? " bg-gray-500"
                 : " bg-mblue hover:bg-dmblue")
             }
-            disabled={selectedCandidate === "null" ? true : false}
+            disabled={
+              selectedCandidate === "null" ? true : hasVoted ? true : false
+            }
             onClick={() => onVote(categoryId, selectedCandidate)}
           >
-            Vote
+            {hasVoted ? "Voted" : "Vote"}
           </button>
         </div>
       </div>

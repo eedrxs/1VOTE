@@ -41,7 +41,6 @@ class PollSetup extends Component {
       POLLFACTORY_ABI,
       POLLFACTORY_ADDRESS
     );
-    console.log(pollFactoryContract);
     this.setState({ pollFactoryContract });
   }
 
@@ -126,8 +125,6 @@ class PollSetup extends Component {
 
       return arrayCategory;
     });
-
-    console.log(pollFactoryContract);
 
     pollFactoryContract.methods
       .createPoll(

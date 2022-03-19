@@ -4,6 +4,7 @@ import HomePage from "./components/homePage";
 import PollSetup from "./components/pollSetup";
 import JoinPoll from "./components/joinPoll";
 import Poll from "./components/poll";
+import PollDetails from "./components/pollDetails";
 class App extends Component {
   state = {
     pollCode: null,
@@ -29,6 +30,12 @@ class App extends Component {
     });
   };
 
+  handlePollStatus = candidates => {
+    let pollDetails = Object.assign({}, this.state.pollDetails);
+    pollDetails["5"] = candidates;
+    this.setState({ pollDetails });
+  };
+
   render() {
     const { pollCode } = this.state;
 
@@ -38,7 +45,13 @@ class App extends Component {
           <Route path="/poll-setup" component={PollSetup}></Route>
           <Route
             path={`/join-poll/${pollCode}`}
-            render={props => <Poll data={this.state} {...props} />}
+            render={props => (
+              <Poll
+                data={this.state}
+                onPollStatus={this.handlePollStatus}
+                {...props}
+              />
+            )}
           ></Route>
           <Route
             path="/join-poll"

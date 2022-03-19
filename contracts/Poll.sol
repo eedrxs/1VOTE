@@ -106,7 +106,7 @@ contract Poll is PollVariables {
     }
 
     function getVoteStatus(address _voter) public view returns (bool[] memory) {
-        bool[] memory _voteStatus = new bool[](categories.length - 1);
+        bool[] memory _voteStatus = new bool[](categories.length);
         for (uint256 i; i < categories.length; i++) {
             _voteStatus[i] = voteStatus[i].hasVoted[_voter];
         }

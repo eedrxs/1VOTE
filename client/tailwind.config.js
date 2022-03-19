@@ -32,6 +32,7 @@ module.exports = {
         xxs: "0.55rem",
         xsm: "0.7rem",
         sml: "0.8rem",
+        msm: "0.85rem",
         sm: "0.95rem"
       },
       margin: {
