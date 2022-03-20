@@ -4,7 +4,6 @@ import HomePage from "./components/homePage";
 import PollSetup from "./components/pollSetup";
 import JoinPoll from "./components/joinPoll";
 import Poll from "./components/poll";
-import PollDetails from "./components/pollDetails";
 class App extends Component {
   state = {
     pollCode: null,
@@ -36,6 +35,14 @@ class App extends Component {
     this.setState({ pollDetails });
   };
 
+  handleVoteStatus = categoryId => {
+    let pollDetails = Object.assign({}, this.state.pollDetails);
+    let voteStatus = [...pollDetails["6"]];
+    voteStatus[categoryId] = true;
+    pollDetails["6"] = voteStatus;
+    this.setState({ pollDetails });
+  };
+
   render() {
     const { pollCode } = this.state;
 
@@ -49,6 +56,7 @@ class App extends Component {
               <Poll
                 data={this.state}
                 onPollStatus={this.handlePollStatus}
+                onVoteStatus={this.handleVoteStatus}
                 {...props}
               />
             )}

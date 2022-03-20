@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Web3 from "web3";
 import { POLL_ABI, POLLFACTORY_ABI, POLLFACTORY_ADDRESS } from "../config";
-import { Redirect } from "react-router";
+import { Redirect } from "react-router-dom";
 
 const JoinPoll = ({ onPollAccess }) => {
   const pollCodeInput = useRef();
@@ -22,6 +22,7 @@ const JoinPoll = ({ onPollAccess }) => {
   const getPollAddress = async () => {
     const pollCode = pollCodeInput.current.value;
     setPollCode(pollCode);
+
     pollFactoryContract.methods
       .getPollAddress(pollCode)
       .call({
@@ -34,7 +35,6 @@ const JoinPoll = ({ onPollAccess }) => {
           .getPollDetails()
           .call({ from: account, gas: 3000000 })
           .then(pollDetails => {
-            console.log(pollDetails);
             onPollAccess(
               pollCode,
               pollContract,

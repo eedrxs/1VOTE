@@ -6,7 +6,8 @@ const page = "bg-bkblue w-full h-full box-border pt-10 pb-10";
 
 const Poll = ({
   data: { pollContract, pollAddress, pollDetails, account },
-  onPollStatus
+  onPollStatus,
+  onVoteStatus
 }) => {
   const {
     1: pollTitle,
@@ -21,19 +22,19 @@ const Poll = ({
     pollContract.methods
       .vote(categoryId, candidateId)
       .send({ from: account, gas: 3000000 })
-      .then(console.log)
+      .then(() => {
+        onVoteStatus(categoryId);
+      })
       .catch(console.log);
   };
 
   useEffect(() => {
-    pollContract.events.voteCasted((error, event) => {
+    pollContract.events.voteCasted(error => {
       if (error) console.log(error);
-      console.log(event);
       pollContract.methods
         .getPollStatus()
         .call({ from: account, gas: 3000000 })
         .then(categories => {
-          console.log(categories);
           onPollStatus(categories);
         });
     });

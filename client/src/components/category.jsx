@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const category =
   "flex flex-col mx-auto my-5 w-80 xs:w-22/1 lg:w-96 bg-ablue text-mblue rounded-xl border-3 border-bdblue";
@@ -29,7 +29,7 @@ const Category = ({
               id={candidateId}
               className={
                 "relative col-span-4 font-bold text-lg border-2 rounded-lg border-bdblue bg-white p-1.5 pl-4" +
-                (candidateId == selectedCandidate ? " ring-2" : "")
+                (+candidateId === +selectedCandidate ? " ring-2" : "")
               }
             >
               <div
@@ -79,6 +79,8 @@ const Category = ({
             className={
               "block font-bold text-center text-white rounded-lg text-msm h-95/0 my-auto p-1.5 pt-2" +
               (selectedCandidate === "null"
+                ? " bg-gray-500"
+                : hasVoted
                 ? " bg-gray-500"
                 : " bg-mblue hover:bg-dmblue")
             }
