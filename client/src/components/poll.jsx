@@ -17,6 +17,9 @@ const Poll = ({
     5: categories,
     6: voteStatus
   } = pollDetails;
+  const [isPending, setPending] = useState(
+    new Array(categories.length).fill(false)
+  );
 
   const handleVote = (categoryId, candidateId) => {
     pollContract.methods
@@ -25,7 +28,18 @@ const Poll = ({
       .then(() => {
         onVoteStatus(categoryId);
       })
-      .catch(console.log);
+      .catch(error => {
+        let pending = isPending;
+        pending[categoryId] = false;
+        setPending(pending);
+        console.log(error);
+      });
+  };
+
+  const handlePending = categoryId => {
+    let pending = [...isPending];
+    pending[categoryId] = true;
+    setPending(pending);
   };
 
   useEffect(() => {
@@ -55,6 +69,8 @@ const Poll = ({
           categories={categories}
           voteStatus={voteStatus}
           onVote={handleVote}
+          isPending={isPending}
+          onPending={handlePending}
         />
       </div>
     </main>

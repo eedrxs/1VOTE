@@ -33,7 +33,6 @@ class PollSetup extends Component {
 
   async loadBlockchainData() {
     const web3 = new Web3(Web3.givenProvider || "http://localhost:7545");
-    const network = await web3.eth.net.getNetworkType();
     await window.ethereum.enable();
     const accounts = await web3.eth.requestAccounts();
     this.setState({ account: accounts[0] });

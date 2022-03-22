@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 const category =
   "flex flex-col mx-auto my-5 w-80 xs:w-22/1 lg:w-96 bg-ablue text-mblue rounded-xl border-3 border-bdblue";
@@ -10,9 +12,12 @@ const Category = ({
   candidates,
   totalVotes,
   voteStatus: hasVoted,
-  onVote
+  onVote,
+  isPending,
+  onPending
 }) => {
   let [selectedCandidate, setSelectedCandidate] = useState("null");
+  // let [votePending, setVotePending] = useState(hasVoted && isPending);
 
   return (
     <div id={categoryId} className={category}>
@@ -59,7 +64,7 @@ const Category = ({
               "col-span-4 font-semibold text-lg text-mblue text-opacity-50 border-2 rounded-lg border-bdblue focus:outline-none bg-white p-1.5 pl-4" +
               (selectedCandidate !== "null" ? " ring-2" : "")
             }
-            disabled={hasVoted}
+            disabled={hasVoted || isPending ? true : false}
           >
             <option value="null" disabled hidden>
               Pick a candidate
@@ -85,11 +90,28 @@ const Category = ({
                 : " bg-mblue hover:bg-dmblue")
             }
             disabled={
-              selectedCandidate === "null" ? true : hasVoted ? true : false
+              selectedCandidate === "null"
+                ? true
+                : hasVoted || isPending
+                ? true
+                : false
             }
-            onClick={() => onVote(categoryId, selectedCandidate)}
+            onClick={() => {
+              onVote(categoryId, selectedCandidate);
+              onPending(categoryId);
+            }}
           >
-            {hasVoted ? "Voted" : "Vote"}
+            {(() => {
+              if (hasVoted) {
+                return "Voted";
+              } else if (isPending) {
+                return (
+                  <FontAwesomeIcon className="text-lg" icon={faSpinner} spin />
+                );
+              } else {
+                return "Vote";
+              }
+            })()}
           </button>
         </div>
       </div>

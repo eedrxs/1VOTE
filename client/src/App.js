@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import HomePage from "./components/homePage";
 import PollSetup from "./components/pollSetup";
 import JoinPoll from "./components/joinPoll";
@@ -18,7 +18,8 @@ class App extends Component {
     pollContract,
     pollAddress,
     pollDetails,
-    account
+    account,
+    web3
   ) => {
     this.setState({
       pollCode,

@@ -9,6 +9,7 @@ const JoinPoll = ({ onPollAccess }) => {
   const [account, setAccount] = useState("");
   const [pollCode, setPollCode] = useState("");
   const web3 = new Web3(Web3.givenProvider || "http://localhost:7545");
+  web3.eth.handleRevert = true;
   const pollFactoryContract = new web3.eth.Contract(
     POLLFACTORY_ABI,
     POLLFACTORY_ADDRESS
@@ -17,6 +18,7 @@ const JoinPoll = ({ onPollAccess }) => {
   useEffect(async () => {
     const accounts = await web3.eth.requestAccounts();
     setAccount(accounts[0]);
+    web3.eth.handleRevert = true;
   }, []);
 
   const getPollAddress = async () => {

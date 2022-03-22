@@ -20,7 +20,7 @@ const AddCategory = ({ onAddCategory }) => {
           event.target.value = "";
         }}
         onKeyUp={async event => {
-          if (event.key == "Enter") {
+          if (event.key === "Enter") {
             event.preventDefault();
             await addCategoryInput.current.blur();
             addCategoryButton.current.click();

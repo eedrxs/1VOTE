@@ -20,7 +20,7 @@ const AddCandidate = ({ categoryId, onAddCandidate }) => {
           event.target.value = "";
         }}
         onKeyUp={async event => {
-          if (event.key == "Enter") {
+          if (event.key === "Enter") {
             event.preventDefault();
             await addCandidateInput.current.blur();
             addCandidateButton.current.click();

@@ -40,8 +40,8 @@ const EligibleVoters = ({ onVotersUpload }) => {
                 votersAddresses = votersAddresses[key];
                 break;
               }
-              changeCurrentIcon({ icon: faCircleCheck, spin: false });
               onVotersUpload(votersAddresses);
+              changeCurrentIcon({ icon: faCircleCheck, spin: false });
             };
 
             reader.readAsText(event.target.files[0]);
