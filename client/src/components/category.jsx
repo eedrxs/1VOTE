@@ -17,7 +17,6 @@ const Category = ({
   onPending
 }) => {
   let [selectedCandidate, setSelectedCandidate] = useState("null");
-  // let [votePending, setVotePending] = useState(hasVoted && isPending);
 
   return (
     <div id={categoryId} className={category}>

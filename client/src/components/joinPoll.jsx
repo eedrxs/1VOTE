@@ -48,7 +48,7 @@ const JoinPoll = ({ onPollAccess }) => {
           })
           .catch(console.log);
       })
-      .catch(console.log);
+      .catch(error => alert(error["reason"]));
   };
 
   if (redirect) return <Redirect push to={`/join-poll/${pollCode}`} />;

@@ -33,6 +33,7 @@ class PollSetup extends Component {
 
   async loadBlockchainData() {
     const web3 = new Web3(Web3.givenProvider || "http://localhost:7545");
+    web3.eth.handleRevert = true;
     await window.ethereum.enable();
     const accounts = await web3.eth.requestAccounts();
     this.setState({ account: accounts[0] });
@@ -141,7 +142,7 @@ class PollSetup extends Component {
           console.log("Successful transaction:", receipt);
           this.setState({ redirect: true });
         },
-        error => console.log(error)
+        error => alert(error["reason"])
       );
   };
 
