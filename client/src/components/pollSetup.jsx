@@ -7,6 +7,7 @@ import Duration from "./form/duration";
 import TypeAndCandidates from "./form/typeAndCandidates";
 import EligibleVoters from "./form/eligibleVoters";
 import Finish from "./form/finish";
+import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 class PollSetup extends Component {
   constructor() {
     super();
@@ -17,6 +18,7 @@ class PollSetup extends Component {
     redirect: false,
     account: "",
     pollFactoryContract: null,
+    isSettingUp: false,
     pollCode: "",
     pollTitle: "",
     startTime: null,
@@ -100,6 +102,10 @@ class PollSetup extends Component {
     this.setState({ voters });
   };
 
+  handleSettingUp = () => {
+    this.setState({ isSettingUp: true });
+  };
+
   handleFinishUp = () => {
     const {
       pollTitle,
@@ -142,7 +148,10 @@ class PollSetup extends Component {
           console.log("Successful transaction:", receipt);
           this.setState({ redirect: true });
         },
-        error => alert(error["reason"])
+        error => {
+          if (error["reason"]) alert(error["reason"]);
+          this.setState({ isSettingUp: false });
+        }
       );
   };
 
@@ -175,7 +184,11 @@ class PollSetup extends Component {
           />
           <EligibleVoters onVotersUpload={this.handleVotersUpload} />
         </form>
-        <Finish onFinishUp={this.handleFinishUp} />
+        <Finish
+          onFinishUp={this.handleFinishUp}
+          isSettingUp={this.state.isSettingUp}
+          onSettingUp={this.handleSettingUp}
+        />
       </main>
     );
   }

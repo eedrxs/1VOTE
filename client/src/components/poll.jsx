@@ -32,7 +32,7 @@ const Poll = ({
         let pending = isPending;
         pending[categoryId] = false;
         setPending(pending);
-        alert(error["reason"]);
+        if (error["reason"]) alert(error["reason"]);
       });
   };
 
