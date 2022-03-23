@@ -7,7 +7,6 @@ import Duration from "./form/duration";
 import TypeAndCandidates from "./form/typeAndCandidates";
 import EligibleVoters from "./form/eligibleVoters";
 import Finish from "./form/finish";
-import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 class PollSetup extends Component {
   constructor() {
     super();
@@ -21,8 +20,8 @@ class PollSetup extends Component {
     isSettingUp: false,
     pollCode: "",
     pollTitle: "",
-    startTime: null,
-    endTime: null,
+    startTime: "",
+    endTime: "",
     categories: [
       {
         name: "",
