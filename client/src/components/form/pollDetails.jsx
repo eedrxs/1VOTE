@@ -30,6 +30,15 @@ const PollDetails = ({ onTitle, onPollCode }) => {
           className={textInput}
           required
           onBlur={event => onPollCode(event.target.value)}
+          onInput={event => {
+            if (/[^a-zA-Z\d-]/.test(event.target.value)) {
+              event.target.value = event.target.value.replace(
+                /[^a-zA-Z\d-]/g,
+                ""
+              );
+              alert("Only letters, numbers and dash are valid!");
+            }
+          }}
         />
       </div>
       <hr className="border-b-2 border-t-0 border-bdblue" />
