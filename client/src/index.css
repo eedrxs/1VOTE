@@ -1,3 +1,38 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Source Code Pro";
+  src: url("./fonts/SourceCodePro-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "Source Code Pro";
+  src: url("./fonts/SourceCodePro-SemiBold.otf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Source Code Pro";
+  src: url("./fonts/SourceCodePro-Bold.ttf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Geometria";
+  src: url("./fonts/Geometria-Medium.ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Geometria";
+  src: url("./fonts/Geometria-Bold.ttf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Geometria";
+  src: url("./fonts/Geometria-ExtraBold.ttf");
+  font-weight: 800;
+}

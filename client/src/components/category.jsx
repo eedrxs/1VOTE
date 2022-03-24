@@ -22,7 +22,7 @@ const Category = ({
     <div id={categoryId} className={category}>
       <div className="flex flex-col w-90/0 m-auto pt-4 pb-6">
         {isBasicPoll ? null : (
-          <h1 className="font-bold text-lg mb-2">{categoryName}</h1>
+          <h1 className="font-bold text-lg opacity-50 mb-2">{categoryName}</h1>
         )}
 
         {/* Candidates */}
@@ -60,7 +60,7 @@ const Category = ({
               setSelectedCandidate(options[options.selectedIndex].value);
             }}
             className={
-              "col-span-4 font-semibold text-lg text-mblue text-opacity-50 border-2 rounded-lg border-bdblue focus:outline-none bg-white p-1.5 pl-4" +
+              "col-span-4 font-medium text-lg text-mblue text-opacity-50 border-2 rounded-lg border-bdblue focus:outline-none bg-white p-1.5 pl-4" +
               (selectedCandidate !== "null" ? " ring-2" : "")
             }
             disabled={hasVoted || isPending ? true : false}

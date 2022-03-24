@@ -68,8 +68,8 @@ module.exports = {
       }
     },
     fontFamily: {
-      sans: ["Geometria"],
-      mono: ['"Source Code Pro"']
+      sans: ["Geometria", "sans-serif"],
+      mono: ["Source Code Pro", "monospace"]
     }
   },
   variants: {
