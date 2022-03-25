@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Web3 from "web3";
+import getWeb3 from "../getWeb3";
 import { Redirect } from "react-router-dom";
 import { POLLFACTORY_ABI, POLLFACTORY_ADDRESS } from "../config";
 import PollDetails from "./form/pollDetails";
@@ -8,11 +8,6 @@ import TypeAndCandidates from "./form/typeAndCandidates";
 import EligibleVoters from "./form/eligibleVoters";
 import Finish from "./form/finish";
 class PollSetup extends Component {
-  constructor() {
-    super();
-    this.loadBlockchainData();
-  }
-
   state = {
     redirect: false,
     account: "",
@@ -32,18 +27,22 @@ class PollSetup extends Component {
     isBasic: true
   };
 
-  async loadBlockchainData() {
-    const web3 = new Web3(Web3.givenProvider || "http://localhost:7545");
-    web3.eth.handleRevert = true;
-    await window.ethereum.enable();
-    const accounts = await web3.eth.requestAccounts();
-    this.setState({ account: accounts[0] });
-    const pollFactoryContract = new web3.eth.Contract(
-      POLLFACTORY_ABI,
-      POLLFACTORY_ADDRESS
-    );
-    this.setState({ pollFactoryContract });
-  }
+  componentDidMount = async () => {
+    try {
+      const web3 = await getWeb3();
+      const accounts = await web3.eth.getAccounts();
+      const pollFactoryContract = new web3.eth.Contract(
+        POLLFACTORY_ABI,
+        POLLFACTORY_ADDRESS
+      );
+      this.setState({ account: accounts[0], pollFactoryContract });
+    } catch (error) {
+      alert(
+        `Failed to load web3, accounts, or contract. Check console for details.`
+      );
+      console.error(error);
+    }
+  };
 
   handleTitle = pollTitle => {
     this.setState({ pollTitle });

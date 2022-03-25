@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import Web3 from "web3";
+import getWeb3 from "../getWeb3";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { POLL_ABI, POLLFACTORY_ABI, POLLFACTORY_ADDRESS } from "../config";
@@ -9,19 +9,28 @@ const JoinPoll = ({ onPollAccess }) => {
   const pollCodeInput = useRef();
   const [redirect, setRedirect] = useState(false);
   const [isJoiningPoll, setJoiningPoll] = useState(false);
+  const [web3, setWeb3] = useState(null);
   const [account, setAccount] = useState("");
+  const [pollFactoryContract, setPollFactoryContract] = useState(null);
   const [pollCode, setPollCode] = useState("");
-  const web3 = new Web3(Web3.givenProvider || "http://localhost:7545");
-  web3.eth.handleRevert = true;
-  const pollFactoryContract = new web3.eth.Contract(
-    POLLFACTORY_ABI,
-    POLLFACTORY_ADDRESS
-  );
 
   useEffect(async () => {
-    const accounts = await web3.eth.requestAccounts();
-    setAccount(accounts[0]);
-    web3.eth.handleRevert = true;
+    try {
+      const web3 = await getWeb3();
+      const accounts = await web3.eth.getAccounts();
+      const pollFactoryContract = new web3.eth.Contract(
+        POLLFACTORY_ABI,
+        POLLFACTORY_ADDRESS
+      );
+      setWeb3(web3);
+      setAccount(accounts[0]);
+      setPollFactoryContract(pollFactoryContract);
+    } catch (error) {
+      alert(
+        `Failed to load web3, accounts, or contract. Check console for details.`
+      );
+      console.error(error);
+    }
   }, []);
 
   const getPollAddress = async () => {

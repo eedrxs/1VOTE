@@ -7,6 +7,8 @@ const getWeb3 = () =>
       // Modern dapp browsers...
       if (window.ethereum) {
         const web3 = new Web3(window.ethereum);
+        // Allow revert reasons to be provided
+        web3.eth.handleRevert = true;
         try {
           // Request account access if needed
           await window.ethereum.enable();
