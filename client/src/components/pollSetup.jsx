@@ -10,7 +10,7 @@ import Finish from "./form/finish";
 class PollSetup extends Component {
   state = {
     redirect: false,
-    account: "",
+    account: null,
     pollFactoryContract: null,
     isSettingUp: false,
     pollCode: "",

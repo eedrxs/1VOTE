@@ -6,11 +6,11 @@ import JoinPoll from "./components/joinPoll";
 import Poll from "./components/poll";
 class App extends Component {
   state = {
+    account: null,
     pollCode: null,
     pollContract: null,
     pollAddress: null,
-    pollDetails: null,
-    account: null
+    pollDetails: null
   };
 
   handlePollAccess = (
@@ -18,8 +18,7 @@ class App extends Component {
     pollContract,
     pollAddress,
     pollDetails,
-    account,
-    web3
+    account
   ) => {
     this.setState({
       pollCode,
@@ -50,7 +49,13 @@ class App extends Component {
     return (
       <div className="content">
         <Switch>
-          <Route path="/poll-setup" component={PollSetup}></Route>
+          {/* Poll Setup page */}
+          <Route
+            path="/poll-setup"
+            render={props => <PollSetup {...props} />}
+          ></Route>
+
+          {/* Poll page */}
           <Route
             path={`/join-poll/${pollCode}`}
             render={props => (
@@ -62,12 +67,16 @@ class App extends Component {
               />
             )}
           ></Route>
+
+          {/* Join Poll page */}
           <Route
             path="/join-poll"
             render={props => (
               <JoinPoll onPollAccess={this.handlePollAccess} {...props} />
             )}
           ></Route>
+
+          {/* Homepage */}
           <Route path="/" component={HomePage}></Route>
         </Switch>
       </div>
