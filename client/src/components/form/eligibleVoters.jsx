@@ -44,7 +44,12 @@ const EligibleVoters = ({ onVotersUpload }) => {
               changeCurrentIcon({ icon: faCircleCheck, spin: false });
             };
 
-            reader.readAsText(event.target.files[0]);
+            if (event.target.files[0]) {
+              reader.readAsText(event.target.files[0]);
+              return;
+            }
+
+            changeCurrentIcon({ icon: faFileArrowUp, spin: false });
           }}
         />
       </div>
