@@ -4,9 +4,15 @@ import { Link } from "react-router-dom";
 const HomePage = () => {
   return (
     <main className="bg-bkblue h-screen w-screen">
-      <h1 className="font-sans font-extrabold text-6xl text-center text-mblue pt-40">
+      <h1 className="font-sans font-extrabold text-7xl text-center text-mblue pt-40">
         1VOTE
       </h1>
+      <p
+        style={{ fontSize: "0.85rem" }}
+        className="font-sans font-medium text-mblue text-center mt-2"
+      >
+        The Polling Platform of the Decentralized Web
+      </p>
 
       <Link
         to="/poll-setup"
