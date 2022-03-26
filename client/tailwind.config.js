@@ -1,27 +1,12 @@
 module.exports = {
-  purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
+  purge: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+    "./src/**/**/*.{js,jsx,ts,tsx}",
+    "./public/index.html"
+  ],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      backgroundColor: theme => ({
-        mblue: "#052272",
-        bkblue: "#F5F7F9",
-        bdblue: "#B8C3E0",
-        ablue: "#DBE0ED",
-        lemon: "#C1FF3D",
-        dmblue: "#051d61",
-        dablue: "#c9d0e0"
-      }),
-      borderColor: theme => ({
-        bdblue: "#B8C3E0",
-        mblue: "#052272",
-        ablue: "#DBE0ED"
-      }),
-      textColor: {
-        mblue: "#052272",
-        bkblue: "#F5F7F9",
-        white: "#FFFFFF"
-      },
       borderWidth: {
         3: "3px"
       },
@@ -66,6 +51,27 @@ module.exports = {
       screens: {
         xs: "320px"
       }
+    },
+    backgroundColor: theme => ({
+      mblue: "#052272",
+      bkblue: "#F5F7F9",
+      bdblue: "#B8C3E0",
+      ablue: "#DBE0ED",
+      lemon: "#C1FF3D",
+      dmblue: "#051d61",
+      dablue: "#c9d0e0",
+      white: "#FFFFFF",
+      gray: "#6b7280"
+    }),
+    borderColor: theme => ({
+      bdblue: "#B8C3E0",
+      mblue: "#052272",
+      ablue: "#DBE0ED"
+    }),
+    textColor: {
+      mblue: "#052272",
+      bkblue: "#F5F7F9",
+      white: "#FFFFFF"
     },
     fontFamily: {
       sans: ["Geometria", "sans-serif"],

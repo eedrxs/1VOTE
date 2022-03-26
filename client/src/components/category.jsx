@@ -83,9 +83,9 @@ const Category = ({
             className={
               "block font-bold text-center text-white rounded-lg text-msm h-95/0 my-auto p-1.5 pt-2" +
               (selectedCandidate === "null"
-                ? " bg-gray-500"
+                ? " bg-gray"
                 : hasVoted
-                ? " bg-gray-500"
+                ? " bg-gray"
                 : " bg-mblue hover:bg-dmblue")
             }
             disabled={
