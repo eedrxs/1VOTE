@@ -8,8 +8,8 @@ const getWeb3 = () =>
     if (window.ethereum) {
       // const web3 = new Web3(window.ethereum);
       const web3 = new Web3(Web3.givenProvider);
-      // Allow revert reasons to be provided
-      web3.eth.handleRevert = true;
+      // Allow revert reasons to be provided !Doesn't work on Ropsten
+      // web3.eth.handleRevert = true;
       try {
         // Request account access if needed
         await window.ethereum.enable();

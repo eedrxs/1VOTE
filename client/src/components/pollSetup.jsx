@@ -147,7 +147,8 @@ class PollSetup extends Component {
           this.setState({ redirect: true });
         },
         error => {
-          if (error["reason"]) alert(error["reason"]);
+          // if (error["reason"]) alert(error["reason"]);
+          if (error.message) console.log(error.message);
           this.setState({ isSettingUp: false });
         }
       );

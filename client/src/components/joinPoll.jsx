@@ -14,23 +14,25 @@ const JoinPoll = ({ onPollAccess }) => {
   const [pollFactoryContract, setPollFactoryContract] = useState(null);
   const [pollCode, setPollCode] = useState("");
 
-  useEffect(async () => {
-    try {
-      const web3 = await getWeb3();
-      const accounts = await web3.eth.getAccounts();
-      const pollFactoryContract = new web3.eth.Contract(
-        POLLFACTORY_ABI,
-        POLLFACTORY_ADDRESS
-      );
-      setWeb3(web3);
-      setAccount(accounts[0]);
-      setPollFactoryContract(pollFactoryContract);
-    } catch (error) {
-      alert(
-        `Failed to load web3, accounts, or contract. Check console for details.`
-      );
-      console.error(error);
-    }
+  useEffect(() => {
+    (async () => {
+      try {
+        const web3 = await getWeb3();
+        const accounts = await web3.eth.getAccounts();
+        const pollFactoryContract = new web3.eth.Contract(
+          POLLFACTORY_ABI,
+          POLLFACTORY_ADDRESS
+        );
+        setWeb3(web3);
+        setAccount(accounts[0]);
+        setPollFactoryContract(pollFactoryContract);
+      } catch (error) {
+        alert(
+          `Failed to load web3, accounts, or contract. Check console for details.`
+        );
+        console.error(error);
+      }
+    })();
   }, []);
 
   const getPollAddress = async () => {
@@ -61,8 +63,12 @@ const JoinPoll = ({ onPollAccess }) => {
           .catch(console.log);
       })
       .catch(error => {
-        alert(error["reason"]);
+        let message = error.message.match(/[\S\s]*?{/)[0].slice(0, -1);
+        if (message.startsWith("execution reverted:")) {
+          message = message.slice(19);
+        }
         setJoiningPoll(false);
+        alert(message);
       });
   };
 
