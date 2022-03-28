@@ -32,7 +32,14 @@ const Poll = ({
         let pending = isPending;
         pending[categoryId] = false;
         setPending(pending);
-        if (error["reason"]) alert(error["reason"]);
+        // let message = error.message.match(/[\S\s]*?{/);
+        // if (!message) return;
+        // message = message[0].slice(0, -1);
+        // if (message.startsWith("execution reverted:")) {
+        //   message = message.slice(19);
+        // }
+        // alert(message);
+        console.log(error);
       });
   };
 

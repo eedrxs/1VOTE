@@ -63,11 +63,11 @@ const JoinPoll = ({ onPollAccess }) => {
           .catch(console.log);
       })
       .catch(error => {
+        setJoiningPoll(false);
         let message = error.message.match(/[\S\s]*?{/)[0].slice(0, -1);
         if (message.startsWith("execution reverted:")) {
           message = message.slice(19);
         }
-        setJoiningPoll(false);
         alert(message);
       });
   };
