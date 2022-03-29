@@ -43,7 +43,7 @@
     "@babel/core": "^7.17.5",
     "autoprefixer": "^9.8.8",
     "postcss": "^7.0.39",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
+    "tailwindcss": "^2.2.19"
   },
   "engines": {
     "node": "v14.17.6"
