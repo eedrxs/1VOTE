@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import getWeb3 from "../getWeb3";
 import { Redirect } from "react-router-dom";
-import { POLLFACTORY_ABI, POLLFACTORY_ADDRESS } from "../config";
+import { POLLFACTORY_ABI, POLLFACTORY_ADDRESS } from "../contracts/config";
 import PollDetails from "./form/pollDetails";
 import Duration from "./form/duration";
 import TypeAndCandidates from "./form/typeAndCandidates";

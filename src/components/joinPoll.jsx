@@ -2,7 +2,11 @@ import React, { useState, useEffect, useRef } from "react";
 import getWeb3 from "../getWeb3";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { POLL_ABI, POLLFACTORY_ABI, POLLFACTORY_ADDRESS } from "../config";
+import {
+  POLL_ABI,
+  POLLFACTORY_ABI,
+  POLLFACTORY_ADDRESS
+} from "../contracts/config";
 import { Redirect } from "react-router-dom";
 
 const JoinPoll = ({ onPollAccess }) => {
