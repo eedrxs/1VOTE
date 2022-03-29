@@ -49,7 +49,8 @@ const HomePage = () => {
         </a>
       </div>
       <p className="text-center text-xxs mt-6">
-        Donate to support this project: <br />{" "}
+        Donate to support this project:
+        <br />
         0xa6dcDeA787B1DE2eC2C43726e890B5686e3e479D
       </p>
     </main>
