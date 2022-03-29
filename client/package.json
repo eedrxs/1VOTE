@@ -42,8 +42,7 @@
     "@babel/cli": "^7.17.6",
     "@babel/core": "^7.17.5",
     "autoprefixer": "^9.8.8",
-    "postcss": "^7.0.39",
-    "tailwindcss": "^2.2.19"
+    "postcss": "^7.0.39"
   },
   "engines": {
     "node": "v14.17.6"
