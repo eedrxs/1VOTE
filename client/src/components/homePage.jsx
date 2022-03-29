@@ -32,7 +32,7 @@ const HomePage = () => {
       <p className="text-center text-xs mt-12 mb-1.5">
         Made with 💗 by Idris Abdul-Lateef
       </p>
-      {/* <div className="text-center">
+      <div className="text-center">
         <a
           className="opacity-80 inline-block mr-2"
           href="https://twitter.com/eedrxs"
@@ -47,7 +47,7 @@ const HomePage = () => {
         >
           <FontAwesomeIcon className="text-mblue" icon={faGithub} />
         </a>
-      </div> */}
+      </div>
       <p className="text-center text-xxs mt-6">
         Donate to support this project:
         <br />
