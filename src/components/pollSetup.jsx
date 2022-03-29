@@ -7,6 +7,7 @@ import Duration from "./form/duration";
 import TypeAndCandidates from "./form/typeAndCandidates";
 import EligibleVoters from "./form/eligibleVoters";
 import Finish from "./form/finish";
+import handleError from "./services/handleError";
 class PollSetup extends Component {
   state = {
     redirect: false,
@@ -148,13 +149,15 @@ class PollSetup extends Component {
         },
         error => {
           this.setState({ isSettingUp: false });
-          let message = error.message.match(/[\S\s]*?{/);
-          if (!message) return;
-          message = message[0].slice(0, -1);
-          if (message.startsWith("execution reverted:")) {
-            message = message.slice(19);
-          }
-          alert(message);
+          console.log(error.message);
+          handleError(error);
+          // let message = error.message.match(/[\S\s]*?{/);
+          // if (!message) return;
+          // message = message[0].slice(0, -1);
+          // if (message.startsWith("execution reverted:")) {
+          //   message = message.slice(19);
+          // }
+          // alert(message);
         }
       );
   };

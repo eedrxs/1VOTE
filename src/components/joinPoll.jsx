@@ -8,6 +8,7 @@ import {
   POLLFACTORY_ADDRESS
 } from "../contracts/config";
 import { Redirect } from "react-router-dom";
+import handleError from "./services/handleError";
 
 const JoinPoll = ({ onPollAccess }) => {
   const pollCodeInput = useRef();
@@ -68,11 +69,7 @@ const JoinPoll = ({ onPollAccess }) => {
       })
       .catch(error => {
         setJoiningPoll(false);
-        let message = error.message.match(/[\S\s]*?{/)[0].slice(0, -1);
-        if (message.startsWith("execution reverted:")) {
-          message = message.slice(19);
-        }
-        alert(message);
+        handleError(error);
       });
   };
 
