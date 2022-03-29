@@ -30,13 +30,14 @@ const HomePage = () => {
         Join a poll
       </Link>
       <p className="text-center text-xs mt-12 mb-1.5">
-        Made with 💗 by Idris Abdul-Lateef
+        Made with <span role="img">💗</span> by Idris Abdul-Lateef
       </p>
       <div className="text-center">
         <a
           className="opacity-80 inline-block mr-2"
           href="https://twitter.com/eedrxs"
           target="_blank"
+          rel="noopener noreferrer"
         >
           <FontAwesomeIcon className="text-mblue" icon={faTwitter} />
         </a>
@@ -44,6 +45,7 @@ const HomePage = () => {
           className="opacity-80 inline-block ml-2"
           href="https://github.com/eedrxs"
           target="_blank"
+          rel="noopener noreferrer"
         >
           <FontAwesomeIcon className="text-mblue" icon={faGithub} />
         </a>
