@@ -30,7 +30,11 @@ const HomePage = () => {
         Join a poll
       </Link>
       <p className="text-center text-xs mt-12 mb-1.5">
-        Made with <span role="img">💗</span> by Idris Abdul-Lateef
+        Made with{" "}
+        <span role="img" aria-label="heart-emoji">
+          💗
+        </span>{" "}
+        by Idris Abdul-Lateef
       </p>
       <div className="text-center">
         <a
