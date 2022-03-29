@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PollDetails from "./pollDetails";
 import Categories from "./categories";
+import getRevertReason from "eth-revert-reason";
 
 const page = "bg-bkblue w-full h-full box-border pt-10 pb-10";
 
@@ -31,14 +32,12 @@ const Poll = ({
       .catch(error => {
         let pending = isPending;
         pending[categoryId] = false;
-        setPending(pending);
-        // let message = error.message.match(/[\S\s]*?{/);
-        // if (!message) return;
-        // message = message[0].slice(0, -1);
-        // if (message.startsWith("execution reverted:")) {
-        //   message = message.slice(19);
-        // }
-        // alert(message);
+        getRevertReason(error.receipt.transactionHash, "kovan").then(
+          message => {
+            alert(message);
+            setPending(pending);
+          }
+        );
         console.log(error);
       });
   };

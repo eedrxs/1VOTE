@@ -7,7 +7,7 @@ import Duration from "./form/duration";
 import TypeAndCandidates from "./form/typeAndCandidates";
 import EligibleVoters from "./form/eligibleVoters";
 import Finish from "./form/finish";
-import handleError from "./services/handleError";
+import getRevertReason from "eth-revert-reason";
 class PollSetup extends Component {
   state = {
     redirect: false,
@@ -148,16 +148,12 @@ class PollSetup extends Component {
           this.setState({ redirect: true });
         },
         error => {
-          this.setState({ isSettingUp: false });
-          console.log(error.message);
-          handleError(error);
-          // let message = error.message.match(/[\S\s]*?{/);
-          // if (!message) return;
-          // message = message[0].slice(0, -1);
-          // if (message.startsWith("execution reverted:")) {
-          //   message = message.slice(19);
-          // }
-          // alert(message);
+          getRevertReason(error.receipt.transactionHash, "kovan").then(
+            message => {
+              alert(message);
+              this.setState({ isSettingUp: false });
+            }
+          );
         }
       );
   };
