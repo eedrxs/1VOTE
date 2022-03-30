@@ -8,8 +8,8 @@
 A free-for-all, blockchain-based polling platform built on the Ethereum Kovan testnet. With so much discussion around the potential of blockchain technology in conducting elections and seeing the absence of any substantial effort to exploit this potential over the years, this project was a move towards establishing an actual working implementation of a polling system that was blockchain-based and that was usable and open to all.  
 
 
-
-
+&nbsp;
+&nbsp;
 ### Usage  
 
 All you need to access this platform is an an ethereum account with Kovan test ETH (you can get some from Kovan faucets like https://faucets.chain.link) and an ethereum-enabled browser. For PC users, you need to have the Metamask plugin installed in your browser. Mobile users can make use of the Metamask mobile app.
@@ -37,8 +37,8 @@ The interface of the Dapp is intuitive and there isn't much to explain. When set
 The JSON document should have only one entry and that should be the array of ethereum account addresses that would be eligible to participate in the poll. You can name the entry however you please — just ensure the document contains just one entry!
 
 
-
-
+&nbsp;
+&nbsp;
 ### Donations  
 
 There is so much that can be done to improve this project. I'd continue working on it and making it better and extending its capabilities. Please, donate to support me as I work on this project.
@@ -46,5 +46,7 @@ There is so much that can be done to improve this project. I'd continue working 
 Ethereum: 0xa6dcDeA787B1DE2eC2C43726e890B5686e3e479D  
 
 
+&nbsp;
+&nbsp;
 Follow me on twitter as well to catch with the latest stuff I'm building.
 https://twitter.com/eedrxs
