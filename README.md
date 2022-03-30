@@ -43,10 +43,11 @@ The JSON document should have only one entry and that should be the array of eth
 
 There is so much that can be done to improve this project. I'd continue working on it and making it better and extending its capabilities. Please, donate to support me as I work on this project.
 
-Ethereum: 0xa6dcDeA787B1DE2eC2C43726e890B5686e3e479D  
+Ethereum: 0xa6dcDeA787B1DE2eC2C43726e890B5686e3e479D
 
 
 &nbsp;
 &nbsp;
-Follow me on twitter as well to catch with the latest stuff I'm building.
+&nbsp;
+Follow me on twitter as well to catch with the latest stuff I'm building! :smiley:
 https://twitter.com/eedrxs
