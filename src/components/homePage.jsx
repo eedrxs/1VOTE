@@ -5,8 +5,8 @@ import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
 
 const HomePage = () => {
   return (
-    <main className="bg-bkblue h-screen w-screen">
-      <h1 className="font-sans font-extrabold text-7xl text-center text-mblue pt-32 xs:pt-36">
+    <main className="bg-bkblue h-full xs:h-screen w-screen">
+      <h1 className="font-sans font-extrabold text-7xl text-center text-mblue pt-10 xs:pt-36">
         1VOTE
       </h1>
       <p
@@ -18,7 +18,7 @@ const HomePage = () => {
 
       <Link
         to="/poll-setup"
-        className="block py-5 w-80 mx-auto mt-28 xs:mt-48 bg-mblue font-medium text-white text-center rounded-2xl"
+        className="block py-5 w-80 mx-auto mt-20 xs:mt-48 bg-mblue font-medium text-white text-center rounded-2xl"
       >
         Set up a poll
       </Link>
@@ -54,7 +54,7 @@ const HomePage = () => {
           <FontAwesomeIcon className="text-mblue" icon={faGithub} />
         </a>
       </div>
-      <p className="text-center text-xxs mt-6">
+      <p className="text-center text-xxs mt-6 pb-6">
         Donate to support this project:
         <br />
         0xa6dcDeA787B1DE2eC2C43726e890B5686e3e479D
