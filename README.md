@@ -46,8 +46,10 @@ There is so much that can be done to improve this project. I'd continue working 
 Ethereum: 0xa6dcDeA787B1DE2eC2C43726e890B5686e3e479D
 
 
-&nbsp;
-&nbsp;
-&nbsp;
-Follow me on twitter as well to catch with the latest stuff I'm building! :smiley:
+<pre>
+
+
+
+</pre>
+Follow me on twitter as well to catch up with the latest stuff I'm building! :smiley: &nbsp;
 https://twitter.com/eedrxs
