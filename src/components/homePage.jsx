@@ -5,8 +5,8 @@ import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
 
 const HomePage = () => {
   return (
-    <main className="bg-bkblue h-full xs:h-screen w-screen">
-      <h1 className="font-sans font-extrabold text-7xl text-center text-mblue pt-10 xs:pt-36">
+    <main className="bg-bkblue h-screen w-full">
+      <h1 className="font-sans font-extrabold text-7xl text-center text-mblue pt-20 xs:pt-32">
         1VOTE
       </h1>
       <p
@@ -54,11 +54,26 @@ const HomePage = () => {
           <FontAwesomeIcon className="text-mblue" icon={faGithub} />
         </a>
       </div>
-      <p className="text-center text-xxs mt-6 pb-6">
+      <p className="text-center text-xxs mt-6">
         Donate to support this project:
         <br />
         0xa6dcDeA787B1DE2eC2C43726e890B5686e3e479D
       </p>
+      <div>
+        <script
+          type="text/javascript"
+          src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
+          data-name="bmc-button"
+          data-slug="eedris"
+          data-color="#FFDD00"
+          data-emoji=""
+          data-font="Lato"
+          data-text="Buy me a coffee"
+          data-outline-color="#000000"
+          data-font-color="#000000"
+          data-coffee-color="#ffffff"
+        ></script>
+      </div>
     </main>
   );
 };

@@ -49,7 +49,7 @@ module.exports = {
         "-1": "-1"
       },
       screens: {
-        xs: "320px"
+        xs: "400px"
       }
     },
     backgroundColor: theme => ({

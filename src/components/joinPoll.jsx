@@ -93,7 +93,7 @@ const JoinPoll = ({ onPollAccess }) => {
             getPollAddress();
           }}
           disabled={isJoiningPoll}
-          className="block py-5 bg-mblue hover:bg-dmblue font-medium text-white text-center text-xl rounded-2xl mt-5"
+          className="block py-5 bg-mblue hover:bg-dmblue font-medium text-white text-center text-xl rounded-2xl mt-5 mb-7"
         >
           {isJoiningPoll ? <FontAwesomeIcon icon={faSpinner} spin /> : "Join"}
         </button>
