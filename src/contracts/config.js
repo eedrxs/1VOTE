@@ -1,7 +1,38 @@
-export const POLLFACTORY_ADDRESS = "0xe18Da8c79076c55499673AfCc36bfA825ee046c8"; //Kovan address
+export const POLLFACTORY_ADDRESS = "0x59ff28Df4E00bBeb5b4138bdfbF1F83904efaBF7";
+// Former Kovan address "0xe18Da8c79076c55499673AfCc36bfA825ee046c8"; //Kovan address
 // Ropsten address "0x2030Ff906b02D705753ed03E46E381063E9438B3";
 
 export const POLLFACTORY_ABI = [
+  {
+    inputs: [],
+    stateMutability: "payable",
+    type: "constructor"
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "string",
+        name: "pollTitle",
+        type: "string"
+      },
+      {
+        indexed: true,
+        internalType: "string",
+        name: "pollCode",
+        type: "string"
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "pollAddress",
+        type: "address"
+      }
+    ],
+    name: "pollCreated",
+    type: "event"
+  },
   {
     inputs: [
       {
@@ -83,36 +114,6 @@ export const POLLFACTORY_ABI = [
     outputs: [],
     stateMutability: "payable",
     type: "function"
-  },
-  {
-    inputs: [],
-    stateMutability: "payable",
-    type: "constructor"
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "string",
-        name: "pollTitle",
-        type: "string"
-      },
-      {
-        indexed: true,
-        internalType: "string",
-        name: "pollCode",
-        type: "string"
-      },
-      {
-        indexed: true,
-        internalType: "address",
-        name: "pollAddress",
-        type: "address"
-      }
-    ],
-    name: "pollCreated",
-    type: "event"
   },
   {
     inputs: [

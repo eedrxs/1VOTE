@@ -14,7 +14,7 @@ const AddCategory = ({ onAddCategory }) => {
         id="add-category"
         ref={addCategoryInput}
         placeholder="Add category"
-        className="border-2 border-dashed border-bdblue rounded-md focus:outline-none focus:border-mblue focus:border-opacity-70 w-full h-10 p-2.5"
+        className="border-2 border-dashed border-bdblue rounded-md focus:outline-none focus:border-mblue focus:border-opacity-70 w-full h-10 p-2.5 pr-14/0"
         onBlur={event => {
           setCategory(event.target.value);
           event.target.value = "";

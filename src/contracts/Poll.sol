@@ -10,6 +10,7 @@ contract Poll is PollVariables {
     uint256 startTime;
     uint256 endTime;
     bool isBasicPoll;
+    bool isOpenPoll;
     /*  ( Category[] categories )
         ( mapping(address => bool) eligibleVoters )
         ( VoteStatus[] voteStatus )
@@ -48,26 +49,32 @@ contract Poll is PollVariables {
             }
         }
 
-        // Store eligible voters
-        for (uint256 i; i < _voters.length; i++) {
-            eligibleVoters[_voters[i]] = true;
+        if (_voters.length == 0) {
+            isOpenPoll = true;
+        } else {
+            // Store eligible voters
+            for (uint256 i; i < _voters.length; i++) {
+                eligibleVoters[_voters[i]] = true;
+            }
         }
 
-        // Create structure to store voters that have voted
         for (uint256 i; i < _categories.length; i++) {
             voteStatus.push();
         }
     }
 
     function vote(uint256 _categoryID, uint256 _candidateID) external {
-        require(
-            isEligible(msg.sender),
-            "You're not eligible to participate in this poll!"
-        );
+        if (!isOpenPoll) {
+            require(
+                isEligible(msg.sender),
+                "You're not eligible to participate in this poll!"
+            );
+        }
         require(
             voteStatus[_categoryID].hasVoted[msg.sender] == false,
             "You've already voted!"
         );
+
         require(block.timestamp >= startTime, "Poll has not started!");
         require(block.timestamp <= endTime, "Poll has ended!");
 
@@ -114,6 +121,7 @@ contract Poll is PollVariables {
     }
 
     function isEligible(address _prospectiveVoter) public view returns (bool) {
+        if (isOpenPoll) return true;
         return eligibleVoters[_prospectiveVoter];
     }
 }

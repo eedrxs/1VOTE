@@ -45,6 +45,10 @@ module.exports = {
       inset: {
         0.5: "3px"
       },
+      spacing: {
+        "14/0": "14%",
+        "15/0": "15%"
+      },
       zIndex: {
         "-1": "-1"
       },

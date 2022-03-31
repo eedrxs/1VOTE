@@ -55,7 +55,8 @@ const EligibleVoters = ({ onVotersUpload }) => {
       </div>
       <p className="font-sans font-medium text-xxs mb-4">
         Upload JSON document containing a single array containing the account
-        addresses of eligible participants
+        addresses of eligible participants.
+        <b> Do not upload anything if you want it to be an open poll.</b>
       </p>
     </div>
   );

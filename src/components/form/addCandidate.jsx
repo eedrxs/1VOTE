@@ -14,7 +14,7 @@ const AddCandidate = ({ categoryId, onAddCandidate }) => {
         id="add-candidate"
         ref={addCandidateInput}
         placeholder="Add candidate"
-        className="border-2 border-dashed border-bdblue rounded-md focus:outline-none focus:border-mblue focus:border-opacity-70 w-full h-10 p-2.5"
+        className="border-2 border-dashed border-bdblue rounded-md focus:outline-none focus:border-mblue focus:border-opacity-70 w-full h-10 p-2.5 pr-15/0"
         onBlur={event => {
           setCandidate(event.target.value);
           event.target.value = "";
