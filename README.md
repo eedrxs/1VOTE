@@ -14,7 +14,11 @@ A free-for-all, blockchain-based polling platform built on the Ethereum Kovan te
 
 All you need to access this platform is an an ethereum account with Kovan test ETH (you can get some from Kovan faucets like https://faucets.chain.link) and an ethereum-enabled browser. For PC users, you need to have the Metamask plugin installed in your browser. Mobile users can make use of the Metamask mobile app.
 
-The interface of the Dapp is intuitive and there isn't much to explain. When setting up a poll, ensure you leave no field unfilled. Upload the ethereum addresses of accounts that would be allowed to participate in a poll as a single array in a JSON document. E.g.  
+The interface of the Dapp is intuitive and there isn't much to explain. When setting up a poll, ensure you leave no field unfilled. There are two kinds to polls you can set up: an open poll that anybody that participate in and a closed poll that is restricted to the accounts whose addresses you uploaded when setting up the poll.
+
+To create an open poll, don't upload anything when setting up a poll. Just ignore the upload button.
+
+To create a closed poll, you have to upload the ethereum addresses of accounts that would be allowed to participate in the poll as a single array in a JSON document. E.g.  
 
 ```
   {
