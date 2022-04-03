@@ -39,7 +39,9 @@ class PollSetup extends Component {
       this.setState({ account: accounts[0], pollFactoryContract });
     } catch (error) {
       alert(
-        `Failed to load web3, accounts, or contract. Check console for details.`
+        `Failed to load web3, accounts, or contract. Check console for details.
+        
+        Is your browser ethereum-enabled?`
       );
       console.error(error);
     }

@@ -8,7 +8,7 @@ import {
   POLLFACTORY_ADDRESS
 } from "../contracts/config";
 import { Redirect } from "react-router-dom";
-import handleError from "./services/handleError";
+import handleError from "./utils/handleError";
 
 const JoinPoll = ({ onPollAccess }) => {
   const pollCodeInput = useRef();
@@ -33,7 +33,9 @@ const JoinPoll = ({ onPollAccess }) => {
         setPollFactoryContract(pollFactoryContract);
       } catch (error) {
         alert(
-          `Failed to load web3, accounts, or contract. Check console for details.`
+          `Failed to load web3, accounts, or contract. Check console for details.
+          
+          Is your browser ethereum-enabled?`
         );
         console.error(error);
       }

@@ -1,4 +1,5 @@
 import React from "react";
+import isIOS from "../utils/isIOS";
 
 let sectionTitle = "text-base font-bold mb-6";
 let inputTitle = "block text-sml font-medium mb-3";
@@ -6,6 +7,8 @@ let dateInput =
   "w-full h-11 border-2 border-bdblue rounded-md bg-bkblue focus:outline-none focus:ring p-2 mb-4";
 
 const Duration = props => {
+  let dateElement = isIOS() ? "date" : "datetime-local";
+
   return (
     <React.Fragment>
       <div className="w-90/0 pt-4 pb-7 mx-auto">
@@ -16,7 +19,7 @@ const Duration = props => {
               Start
             </label>
             <input
-              type="datetime-local"
+              type={dateElement}
               id="start-time"
               className={dateInput}
               required
@@ -28,7 +31,7 @@ const Duration = props => {
               End
             </label>
             <input
-              type="datetime-local"
+              type={dateElement}
               id="end-time"
               className={dateInput}
               required
