@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import getWeb3 from "../getWeb3";
+// import getWeb3 from "../getWeb3";
 import { Redirect } from "react-router-dom";
 import { POLLFACTORY_ABI, POLLFACTORY_ADDRESS } from "../contracts/config";
 import PollDetails from "./form/pollDetails";
@@ -9,9 +9,18 @@ import EligibleVoters from "./form/eligibleVoters";
 import Finish from "./form/finish";
 import getRevertReason from "eth-revert-reason";
 class PollSetup extends Component {
+  constructor(props) {
+    super(props);
+    this.state.account = props.account;
+    this.state.web3 = props.web3;
+    console.log(props.account)
+    console.log(props.web3)
+  }
+
   state = {
     redirect: false,
     account: null,
+    web3: null,
     pollFactoryContract: null,
     isSettingUp: false,
     pollCode: "",
@@ -29,19 +38,17 @@ class PollSetup extends Component {
   };
 
   componentDidMount = async () => {
+    const {web3} = this.state;
+
     try {
-      const web3 = await getWeb3();
-      const accounts = await web3.eth.getAccounts();
       const pollFactoryContract = new web3.eth.Contract(
         POLLFACTORY_ABI,
         POLLFACTORY_ADDRESS
       );
-      this.setState({ account: accounts[0], pollFactoryContract });
+      this.setState({ pollFactoryContract });
     } catch (error) {
       alert(
-        `Failed to load web3, accounts, or contract. Check console for details.
-        
-        Is your browser ethereum-enabled?`
+        `Failed to load web3, accounts, or contract. Check console for details. Is your browser Metamask-enabled?`
       );
       console.error(error);
     }

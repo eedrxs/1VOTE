@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import getWeb3 from "../getWeb3";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -10,32 +9,24 @@ import {
 import { Redirect } from "react-router-dom";
 import handleError from "./utils/handleError";
 
-const JoinPoll = ({ onPollAccess }) => {
+const JoinPoll = ({ onPollAccess, account, web3 }) => {
   const pollCodeInput = useRef();
   const [redirect, setRedirect] = useState(false);
   const [isJoiningPoll, setJoiningPoll] = useState(false);
-  const [web3, setWeb3] = useState(null);
-  const [account, setAccount] = useState("");
   const [pollFactoryContract, setPollFactoryContract] = useState(null);
   const [pollCode, setPollCode] = useState("");
 
   useEffect(() => {
     (async () => {
       try {
-        const web3 = await getWeb3();
-        const accounts = await web3.eth.getAccounts();
         const pollFactoryContract = new web3.eth.Contract(
           POLLFACTORY_ABI,
           POLLFACTORY_ADDRESS
         );
-        setWeb3(web3);
-        setAccount(accounts[0]);
         setPollFactoryContract(pollFactoryContract);
       } catch (error) {
         alert(
-          `Failed to load web3, accounts, or contract. Check console for details.
-          
-          Is your browser ethereum-enabled?`
+          `Failed to load web3, accounts, or contract. Check console for details. Is your browser Metamask-enabled?`
         );
         console.error(error);
       }

@@ -7,10 +7,15 @@ import Poll from "./components/poll";
 class App extends Component {
   state = {
     account: null,
+    web3: null,
     pollCode: null,
     pollContract: null,
     pollAddress: null,
     pollDetails: null
+  };
+
+  handleConnect = (account, web3) => {
+    this.setState({ account, web3 });
   };
 
   handlePollAccess = (
@@ -44,7 +49,7 @@ class App extends Component {
   };
 
   render() {
-    const { pollCode } = this.state;
+    const { pollCode, account, web3 } = this.state;
 
     return (
       <div className="content">
@@ -52,7 +57,9 @@ class App extends Component {
           {/* Poll Setup page */}
           <Route
             path="/poll-setup"
-            render={props => <PollSetup {...props} />}
+            render={props => (
+              <PollSetup account={account} web3={web3} {...props} />
+            )}
           ></Route>
 
           {/* Poll page */}
@@ -63,6 +70,8 @@ class App extends Component {
                 data={this.state}
                 onPollStatus={this.handlePollStatus}
                 onVoteStatus={this.handleVoteStatus}
+                account={account}
+                web3={web3}
                 {...props}
               />
             )}
@@ -72,12 +81,26 @@ class App extends Component {
           <Route
             path="/join-poll"
             render={props => (
-              <JoinPoll onPollAccess={this.handlePollAccess} {...props} />
+              <JoinPoll
+                onPollAccess={this.handlePollAccess}
+                account={account}
+                web3={web3}
+                {...props}
+              />
             )}
           ></Route>
 
           {/* Homepage */}
-          <Route path="/" component={HomePage}></Route>
+          <Route
+            path="/"
+            render={props => (
+              <HomePage
+                onConnect={this.handleConnect}
+                account={account}
+                {...props}
+              />
+            )}
+          ></Route>
         </Switch>
       </div>
     );

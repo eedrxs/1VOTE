@@ -36,3 +36,7 @@
   src: url("./fonts/Geometria-ExtraBold.ttf");
   font-weight: 800;
 }
+
+.blurbg {
+  backdrop-filter: blur(3px);
+}

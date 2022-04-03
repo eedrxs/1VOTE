@@ -65,7 +65,8 @@ module.exports = {
       dmblue: "#051d61",
       dablue: "#c9d0e0",
       white: "#FFFFFF",
-      gray: "#6b7280"
+      gray: "#6b7280",
+      black: "#000000"
     }),
     borderColor: theme => ({
       bdblue: "#B8C3E0",
