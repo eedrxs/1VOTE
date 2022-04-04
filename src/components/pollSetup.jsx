@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import getWeb3 from "../getWeb3";
 import { Redirect } from "react-router-dom";
 import { POLLFACTORY_ABI, POLLFACTORY_ADDRESS } from "../contracts/config";
 import PollDetails from "./form/pollDetails";
@@ -7,20 +6,18 @@ import Duration from "./form/duration";
 import TypeAndCandidates from "./form/typeAndCandidates";
 import EligibleVoters from "./form/eligibleVoters";
 import Finish from "./form/finish";
+import ConnectModal from "./connectModal";
 import getRevertReason from "eth-revert-reason";
 class PollSetup extends Component {
   constructor(props) {
     super(props);
     this.state.account = props.account;
     this.state.web3 = props.web3;
-    console.log(props.account)
-    console.log(props.web3)
+    this.state.onConnect = props.onConnect;
   }
 
   state = {
     redirect: false,
-    account: null,
-    web3: null,
     pollFactoryContract: null,
     isSettingUp: false,
     pollCode: "",
@@ -38,7 +35,27 @@ class PollSetup extends Component {
   };
 
   componentDidMount = async () => {
-    const {web3} = this.state;
+    const { web3, account } = this.state;
+    if (!account) return;
+
+    try {
+      const pollFactoryContract = new web3.eth.Contract(
+        POLLFACTORY_ABI,
+        POLLFACTORY_ADDRESS
+      );
+      this.setState({ pollFactoryContract });
+    } catch (error) {
+      alert(
+        `Failed to load web3, accounts, or contract. Check console for details. Is your browser Metamask-enabled?`
+      );
+      console.error(error);
+    }
+  };
+
+  UNSAFE_componentWillReceiveProps = nextProps => {
+    const { account, web3 } = nextProps;
+    if (!account) return;
+    this.setState({ account, web3 });
 
     try {
       const pollFactoryContract = new web3.eth.Contract(
@@ -175,33 +192,38 @@ class PollSetup extends Component {
     if (this.state.redirect) return <Redirect push to="/join-poll" />;
 
     return (
-      <main className={page}>
-        <form className={form}>
-          <PollDetails
-            onTitle={this.handleTitle}
-            onPollCode={this.handlePollCode}
+      <React.Fragment>
+        {this.state.account ? null : (
+          <ConnectModal onConnect={this.state.onConnect} />
+        )}
+        <main className={page}>
+          <form className={form}>
+            <PollDetails
+              onTitle={this.handleTitle}
+              onPollCode={this.handlePollCode}
+            />
+            <Duration
+              onStartTime={this.handleStartTime}
+              onEndTime={this.handleEndTime}
+            />
+            <TypeAndCandidates
+              isBasic={this.state.isBasic}
+              categories={this.state.categories}
+              onPollTypeSelect={this.handlePollTypeSelect}
+              onAddCandidate={this.handleAddCandidate}
+              onRemoveCandidate={this.handleRemoveCandidate}
+              onAddCategory={this.handleAddCategory}
+              onRemoveCategory={this.handleRemoveCategory}
+            />
+            <EligibleVoters onVotersUpload={this.handleVotersUpload} />
+          </form>
+          <Finish
+            onFinishUp={this.handleFinishUp}
+            isSettingUp={this.state.isSettingUp}
+            onSettingUp={this.handleSettingUp}
           />
-          <Duration
-            onStartTime={this.handleStartTime}
-            onEndTime={this.handleEndTime}
-          />
-          <TypeAndCandidates
-            isBasic={this.state.isBasic}
-            categories={this.state.categories}
-            onPollTypeSelect={this.handlePollTypeSelect}
-            onAddCandidate={this.handleAddCandidate}
-            onRemoveCandidate={this.handleRemoveCandidate}
-            onAddCategory={this.handleAddCategory}
-            onRemoveCategory={this.handleRemoveCategory}
-          />
-          <EligibleVoters onVotersUpload={this.handleVotersUpload} />
-        </form>
-        <Finish
-          onFinishUp={this.handleFinishUp}
-          isSettingUp={this.state.isSettingUp}
-          onSettingUp={this.handleSettingUp}
-        />
-      </main>
+        </main>
+      </React.Fragment>
     );
   }
 }

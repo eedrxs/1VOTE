@@ -58,7 +58,12 @@ class App extends Component {
           <Route
             path="/poll-setup"
             render={props => (
-              <PollSetup account={account} web3={web3} {...props} />
+              <PollSetup
+                account={account}
+                web3={web3}
+                onConnect={this.handleConnect}
+                {...props}
+              />
             )}
           ></Route>
 
@@ -85,6 +90,7 @@ class App extends Component {
                 onPollAccess={this.handlePollAccess}
                 account={account}
                 web3={web3}
+                onConnect={this.handleConnect}
                 {...props}
               />
             )}
