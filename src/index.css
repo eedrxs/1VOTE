@@ -2,10 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500;700&display=swap");
+/* @font-face {
   font-family: "Source Code Pro";
   src: url("./fonts/SourceCodePro-SemiBold.ttf");
-}
+} */
 
 @font-face {
   font-family: "Source Code Pro";
@@ -13,11 +14,12 @@
   font-weight: 500;
 }
 
-@font-face {
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500;600;700&display=swap");
+/* @font-face {
   font-family: "Source Code Pro";
   src: url("./fonts/SourceCodePro-Bold.ttf");
   font-weight: 700;
-}
+} */
 
 @font-face {
   font-family: "Geometria";
